@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_SmartProjectorMainWindow_t {
-    QByteArrayData data[11];
-    char stringdata0[137];
+    QByteArrayData data[12];
+    char stringdata0[142];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,19 +33,21 @@ QT_MOC_LITERAL(0, 0, 24), // "SmartProjectorMainWindow"
 QT_MOC_LITERAL(1, 25, 10), // "openDeivce"
 QT_MOC_LITERAL(2, 36, 0), // ""
 QT_MOC_LITERAL(3, 37, 7), // "timeout"
-QT_MOC_LITERAL(4, 45, 12), // "startInspect"
-QT_MOC_LITERAL(5, 58, 10), // "endInspect"
-QT_MOC_LITERAL(6, 69, 16), // "calibrationImage"
-QT_MOC_LITERAL(7, 86, 16), // "correctionScreen"
-QT_MOC_LITERAL(8, 103, 15), // "changeHumanFovX"
-QT_MOC_LITERAL(9, 119, 1), // "d"
-QT_MOC_LITERAL(10, 121, 15) // "changeHumanFovY"
+QT_MOC_LITERAL(4, 45, 11), // "startKinect"
+QT_MOC_LITERAL(5, 57, 9), // "endKinect"
+QT_MOC_LITERAL(6, 67, 16), // "calibrationImage"
+QT_MOC_LITERAL(7, 84, 16), // "correctionScreen"
+QT_MOC_LITERAL(8, 101, 18), // "changeHumanSetting"
+QT_MOC_LITERAL(9, 120, 1), // "d"
+QT_MOC_LITERAL(10, 122, 13), // "setCorrection"
+QT_MOC_LITERAL(11, 136, 5) // "value"
 
     },
     "SmartProjectorMainWindow\0openDeivce\0"
-    "\0timeout\0startInspect\0endInspect\0"
+    "\0timeout\0startKinect\0endKinect\0"
     "calibrationImage\0correctionScreen\0"
-    "changeHumanFovX\0d\0changeHumanFovY"
+    "changeHumanSetting\0d\0setCorrection\0"
+    "value"
 };
 #undef QT_MOC_LITERAL
 
@@ -80,7 +82,7 @@ static const uint qt_meta_data_SmartProjectorMainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Double,    9,
-    QMetaType::Void, QMetaType::Double,    9,
+    QMetaType::Void, QMetaType::Int,   11,
 
        0        // eod
 };
@@ -93,12 +95,12 @@ void SmartProjectorMainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call
         switch (_id) {
         case 0: _t->openDeivce(); break;
         case 1: _t->timeout(); break;
-        case 2: _t->startInspect(); break;
-        case 3: _t->endInspect(); break;
+        case 2: _t->startKinect(); break;
+        case 3: _t->endKinect(); break;
         case 4: _t->calibrationImage(); break;
         case 5: _t->correctionScreen(); break;
-        case 6: _t->changeHumanFovX((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 7: _t->changeHumanFovY((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 6: _t->changeHumanSetting((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 7: _t->setCorrection((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
     }

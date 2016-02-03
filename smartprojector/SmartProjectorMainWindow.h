@@ -21,6 +21,9 @@
 #include <libfreenect2/logger.h>
 
 #include "optimalRectDDJ.h"
+
+#include <qscrollbar.h>
+
 /// @brief FisheyeDewarping 프로그램의 메인 윈도우 클래스입니다.
 ///
 /// 이 메인 윈도우 상에서 wiget들과 버튼이 생성되고 초기화 됩니다.
@@ -29,6 +32,7 @@ class SmartProjectorMainWindow : public QMainWindow, public Ui::CarInspectMainWi
     Q_OBJECT
 public:
 
+	
 	/// @brief 생성자RegNewChart()
 	///
 	///	생성자에서는 Ui를 생성하고  
@@ -41,6 +45,11 @@ public:
 	///	소멸자에서 하는일은 별로 없음..
 	~SmartProjectorMainWindow();
     
+	/// trace 창에 메세지를 띄운다. 
+	void trace(QString str){
+		mTextConsole->appendPlainText(str);
+		mTextConsole->verticalScrollBar()->setValue(mTextConsole->verticalScrollBar()->maximum());
+	}
 
 	//void InitListView();
 	//void InitPreViews();
@@ -53,20 +62,30 @@ public:
 	void loadCalibrationData();
 
 	void detectProjectionArea(cv::Mat& undistorted, cv::Mat& depthimg);
+	void detectProjectionAreaUser(cv::Mat& userDepth, cv::Mat& IRimg);
 
 	void detectOptimalRectFromLargestContour(cv::Mat& depthimg);
 	//bool calculateCalibrationParameter(cv::Mat &inputDepth, )
 	void warpScreenImage(cv::Mat &screenImage, cv::Mat &undistorted);
+	void calculatePlaneNormalVector(float &angleX, float &angleY);
+
+	
+	// get kinect frame
+	// image         : 1920x1080 RGB CV_8UC3
+	// imageDepth    : 512x424 float CV_32F
+	// imageIR       : 512x424 float CV_32F
+	// imageRegisted : 512x424 float CV_8UC3
+	void getKinectImage(cv::Mat &image, cv::Mat &imageDepth, cv::Mat& imageIR, cv::Mat& imageRegisted);
 
 public slots:
 	void openDeivce();
 	void timeout();
 
-	// 검사 시작
-	void startInspect();
+	// Kinect Play
+	void startKinect();
 	
-	// 검사 종료
-	void endInspect();
+	// Kinect stop 
+	void endKinect();
 
 	// 칼리브레이션
 	void calibrationImage();
@@ -75,18 +94,15 @@ public slots:
 	void correctionScreen();
 	
 	// human Fov 변화
-	void changeHumanFovX(double d){
+	void changeHumanSetting(double d){
 		create_Human_To_depth_Map();
 	}
-
-	void changeHumanFovY(double d){
-		create_Human_To_depth_Map();
-	}
+	void setCorrection(int value);
 private:
 	// 동영상을 보여주기 위한 타이머
 	QTimer mTimer; 
 
-	// 현재 영상
+	// 현재 Kinect 영상
 	cv::Mat mCurrentImage;
 	cv::Mat mCurrentIRImage;
 	cv::Mat mCurrentDepthImage;
@@ -157,18 +173,33 @@ private:
 	////////////////////////////////////////////////////////////////////////
 	// 보정 수행 관련 변수
 	////////////////////////////////////////////////////////////////////////
-	cv::Mat mPointXYZ;
-	cv::Mat mProjectionAreaMask;
-	cv::Mat mImage_xPos;
-	cv::Mat mImage_yPos;
-	optimalRectDDJ mOpRect;
-	QImageWidget *mWarpingScreen;  // 보정 된 워핑 스크린
-	cv::Mat mWarpImage;
-	cv::Mat mHumanDepth;
-	void create_Human_To_depth_Map();
-	cv::Mat mHumanDepthMap_x;
-	cv::Mat mHumanDepthMap_y;
+	cv::Mat mPointXYZ;					// 현재 받아온 depth 이미지의 Kinect 좌표계 3D값
+	cv::Mat mPointXYZ_User;				// 현재 받아온 유저 depth 이미지의 Kinect 좌표계 3D값
+
+	cv::Mat mProjectionAreaMask;		// 프로젝션 영역 mask
+	cv::Mat mProjectionAreaMaskUser;	// 프로젝션 영역 mask
+
+	cv::Mat mImage_xPos;				// 현재 받아온 depth 이미지의 프로젝터 이미지 x좌표값
+	cv::Mat mImage_yPos;				// 현재 받아온 depth 이미지의 프로젝터 이미지 y좌표값
+	//cv::Mat mImage_xPosUser;			// 현재 받아온 유저 depth 이미지의 프로젝터 이미지 x좌표값
+	//cv::Mat mImage_yPosUser;			// 현재 받아온 유저 depth 이미지의 프로젝터 이미지 y좌표값
+
+	optimalRectDDJ mOpRect;				// Optimal Rect 계산을 위한 객체
+	QImageWidget *mWarpingScreen;		// 보정 된 워핑 스크린
+
+	cv::Mat mWarpImage;					// 워핑 영상
+	//cv::Mat mHumanDepth;				// 유저 Depth 영상
+
+	void create_Human_To_depth_Map();   // human Depth to kinect Depth 변환 맵 생성 함수
+	cv::Mat mHumanDepthMap_x;			// human Depth mapping table
+	cv::Mat mHumanDepthMap_y;			// human Depth mapping table
 	
+	cv::Mat mAvgDepth;					// 보정용 평균 depth값
+	int mNumAvgFrame;					// 평균 frame 숫자
+	int mAccFrameNumber;				// 현재 누적된 frame 숫자
+	
+	bool mPlaneRotationCorrection;
+	bool mCorrectionFlag;
 };
 
 #endif

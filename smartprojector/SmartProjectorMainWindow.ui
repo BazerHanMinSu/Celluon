@@ -325,6 +325,24 @@
        <layout class="QHBoxLayout" name="horizontalLayout_5">
         <item>
          <widget class="QLabel" name="label">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>42</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>42</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="frameShape">
            <enum>QFrame::Box</enum>
           </property>
@@ -335,6 +353,27 @@
         </item>
         <item>
          <widget class="QDoubleSpinBox" name="mFovXSpinBox">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>60</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>50</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="decimals">
+           <number>2</number>
+          </property>
           <property name="maximum">
            <double>170.000000000000000</double>
           </property>
@@ -348,6 +387,24 @@
         </item>
         <item>
          <widget class="QLabel" name="label_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>40</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>42</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="frameShape">
            <enum>QFrame::Box</enum>
           </property>
@@ -358,6 +415,27 @@
         </item>
         <item>
          <widget class="QDoubleSpinBox" name="mFovYSpinBox">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>60</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>50</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="decimals">
+           <number>2</number>
+          </property>
           <property name="maximum">
            <double>170.000000000000000</double>
           </property>
@@ -370,9 +448,52 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QCheckBox" name="mAutoPlaneRotationCB">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>85</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>50</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="text">
-           <string>Optimization</string>
+           <string>Auto Rotate</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="mVerticalFlip">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>60</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>50</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>v flip</string>
           </property>
          </widget>
         </item>
@@ -390,7 +511,7 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>127</width>
+            <width>123</width>
             <height>0</height>
            </size>
           </property>
@@ -404,29 +525,38 @@
            <enum>QFrame::Box</enum>
           </property>
           <property name="text">
-           <string>Human Position X:</string>
+           <string>PlaneRotatation Rx:</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="mHumanPosX">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
+         <widget class="QDoubleSpinBox" name="mRotateXSpinBox">
           <property name="minimumSize">
            <size>
-            <width>55</width>
+            <width>60</width>
             <height>0</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>50</width>
+            <width>60</width>
             <height>16777215</height>
            </size>
+          </property>
+          <property name="decimals">
+           <number>4</number>
+          </property>
+          <property name="minimum">
+           <double>-80.000000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>80.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>1.000000000000000</double>
+          </property>
+          <property name="value">
+           <double>0.000000000000000</double>
           </property>
          </widget>
         </item>
@@ -440,13 +570,13 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>30</width>
+            <width>28</width>
             <height>0</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>30</width>
+            <width>28</width>
             <height>16777215</height>
            </size>
           </property>
@@ -454,29 +584,38 @@
            <enum>QFrame::Box</enum>
           </property>
           <property name="text">
-           <string>Y:  </string>
+           <string>Ry:  </string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="mHumanPosY">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
+         <widget class="QDoubleSpinBox" name="mRotateYSpinBox">
           <property name="minimumSize">
            <size>
-            <width>55</width>
+            <width>60</width>
             <height>0</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>50</width>
+            <width>60</width>
             <height>16777215</height>
            </size>
+          </property>
+          <property name="decimals">
+           <number>4</number>
+          </property>
+          <property name="minimum">
+           <double>-80.000000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>80.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>1.000000000000000</double>
+          </property>
+          <property name="value">
+           <double>0.000000000000000</double>
           </property>
          </widget>
         </item>
@@ -490,13 +629,13 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>30</width>
+            <width>28</width>
             <height>0</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>30</width>
+            <width>28</width>
             <height>16777215</height>
            </size>
           </property>
@@ -504,33 +643,49 @@
            <enum>QFrame::Box</enum>
           </property>
           <property name="text">
-           <string>Z:</string>
+           <string>Rz:</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="mHumanPosZ">
+         <widget class="QDoubleSpinBox" name="mRotateZSpinBox">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
+           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+            <horstretch>60</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="minimumSize">
-           <size>
-            <width>55</width>
-            <height>0</height>
-           </size>
-          </property>
           <property name="maximumSize">
            <size>
-            <width>50</width>
+            <width>60</width>
             <height>16777215</height>
            </size>
+          </property>
+          <property name="decimals">
+           <number>4</number>
+          </property>
+          <property name="minimum">
+           <double>-80.000000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>80.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>1.000000000000000</double>
+          </property>
+          <property name="value">
+           <double>1.500000000000000</double>
           </property>
          </widget>
         </item>
        </layout>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="mHomographyCB">
+        <property name="text">
+         <string>Homography</string>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QPlainTextEdit" name="mTextConsole">

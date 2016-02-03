@@ -10,7 +10,6 @@ Release:TARGET = SmartProjector
 Debug:DESTDIR = ./output
 Debug:TARGET = SmartProjectorD 
 
-PCL_PATH = "C:/Program Files/PCL 1.6.0" 
 OPENCV_PATH = C:/_program/opencv/build
 OPENCV_VER = 249
 
@@ -78,7 +77,7 @@ INCLUDEPATH += C:/_program/libfreenect2-master/build
 INCLUDEPATH += C:/_program/libfreenect2-master/src/tinythread
 INCLUDEPATH += C:/_program/libfreenect2-master/depends/libusb/libusb
 INCLUDEPATH += C:/_program/libfreenect2-master/depends/libjpeg-turbo64/include
-INCLUDEPATH += C:/_program/libfreenect2-masterldepends/glfw/include
+INCLUDEPATH += C:/_program/libfreenect2-master/depends/glfw/include
 
 # OpenCL includes
 INCLUDEPATH += C:/Program Files (x86)/Intel/OpenCL SDK/4.6/include

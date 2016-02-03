@@ -1,12 +1,10 @@
-﻿빌드 시작: 2015-11-16 오후 9:46:37
-     1>2 노드의 "C:\Users\Leo_Note\Desktop\smartprojector\smartprojector\SmartProjector.vcxproj" 프로젝트(Build 대상)입니다.
-     1>CustomBuild:
-         MOC QImageWidget.h
+﻿빌드 시작: 2016-02-04 오전 5:05:04
+     1>2 노드의 "C:\GitLocal\Celluon\smartprojector\SmartProjector.vcxproj" 프로젝트(Build 대상)입니다.
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_QImageWidget.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are debug\moc_QImageWidget.cpp, release\moc_QImageWidget.cpp.
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_SmartProjectorMainWindow.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are debug\moc_SmartProjectorMainWindow.cpp, release\moc_SmartProjectorMainWindow.cpp.
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of qrc_SmartProjectorMainWindow.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are debug\qrc_SmartProjectorMainWindow.cpp, release\qrc_SmartProjectorMainWindow.cpp.
-       ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I. /IC:\_program\opencv\build\include\opencv /IC:\_program\opencv\build\include /I"C:\_program\libfreenect2-master\include" /I"C:\_program\libfreenect2-master\include\internal" /I"C:\_program\libfreenect2-master\build" /I"C:\_program\libfreenect2-master\src\tinythread" /I"C:\_program\libfreenect2-master\depends\libusb\libusb" /I"C:\_program\libfreenect2-master\depends\libjpeg-turbo64\include" /I"C:/_program/libfreenect2-masterldepends/glfw/include" /IC:/Program /IFiles /I"(x86)/Intel/OpenCL" /ISDK/4.6/include /IC:\Qt\Qt5.5.1\5.5\msvc2013_64\include /IC:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtWidgets /IC:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtGui /IC:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtANGLE /IC:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore /Irelease /I. /I"C:\Qt\Qt5.5.1\5.5\msvc2013_64\mkspecs\win32-msvc2013" /nologo /W3 /WX- /O2 /Oy- /D _WINDOWS /D UNICODE /D WIN32 /D QT_NO_DEBUG /D QT_WIDGETS_LIB /D QT_GUI_LIB /D QT_CORE_LIB /D NDEBUG /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"release\\" /Gd /TP /analyze- /errorReport:prompt -Zc:strictStrings -w34100 -w34189 -w44996 QImageWidget.cpp SmartProjectorMainWindow.cpp optimalRectDDJ.cpp release\moc_QImageWidget.cpp release\moc_SmartProjectorMainWindow.cpp release\qrc_SmartProjectorMainWindow.cpp
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I. /IC:\_program\opencv\build\include\opencv /IC:\_program\opencv\build\include /I"C:\_program\libfreenect2-master\include" /I"C:\_program\libfreenect2-master\include\internal" /I"C:\_program\libfreenect2-master\build" /I"C:\_program\libfreenect2-master\src\tinythread" /I"C:\_program\libfreenect2-master\depends\libusb\libusb" /I"C:\_program\libfreenect2-master\depends\libjpeg-turbo64\include" /I"C:\_program\libfreenect2-master\depends\glfw\include" /IC:/Program /IFiles /I"(x86)/Intel/OpenCL" /ISDK/4.6/include /IC:\qt\Qt5.5.1\5.5\msvc2013_64\include /IC:\qt\Qt5.5.1\5.5\msvc2013_64\include\QtWidgets /IC:\qt\Qt5.5.1\5.5\msvc2013_64\include\QtGui /IC:\qt\Qt5.5.1\5.5\msvc2013_64\include\QtANGLE /IC:\qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore /Irelease /I"C:\qt\Qt5.5.1\5.5\msvc2013_64\mkspecs\win32-msvc2013" /nologo /W3 /WX- /O2 /D _WINDOWS /D UNICODE /D WIN32 /D WIN64 /D QT_NO_DEBUG /D QT_WIDGETS_LIB /D QT_GUI_LIB /D QT_CORE_LIB /D NDEBUG /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"release\\" /Gd /TP /errorReport:prompt -Zc:strictStrings -w34100 -w34189 -w44996 QImageWidget.cpp SmartProjectorMainWindow.cpp main.cpp optimalRectDDJ.cpp release\moc_QImageWidget.cpp release\moc_SmartProjectorMainWindow.cpp release\qrc_SmartProjectorMainWindow.cpp
          QImageWidget.cpp
      1>c:\_program\opencv\build\include\opencv2\flann\dist.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
      1>QImageWidget.cpp(42): warning C4100: 'event' : 참조되지 않은 정식 매개 변수입니다.
@@ -14,20 +12,33 @@
          SmartProjectorMainWindow.cpp
      1>c:\_program\opencv\build\include\opencv2\flann\dist.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
      1>C:\_program\libfreenect2-master\include\libfreenect2/frame_listener.hpp(67): warning C4146: 단항 빼기 연산자가 부호 없는 형식에 적용되었습니다. 결과는 역시 unsigned입니다.
-     1>c:\users\leo_note\desktop\smartprojector\smartprojector\SmartProjectorMainWindow.h(78): warning C4100: 'd' : 참조되지 않은 정식 매개 변수입니다.
-     1>c:\users\leo_note\desktop\smartprojector\smartprojector\SmartProjectorMainWindow.h(82): warning C4100: 'd' : 참조되지 않은 정식 매개 변수입니다.
-     1>SmartProjectorMainWindow.cpp(155): warning C4305: '=' : 'double'에서 'float'(으)로 잘립니다.
-     1>SmartProjectorMainWindow.cpp(156): warning C4305: '=' : 'double'에서 'float'(으)로 잘립니다.
-     1>SmartProjectorMainWindow.cpp(190): warning C4189: 'viewer_enabled' : 지역 변수가 초기화되었으나 참조되지 않았습니다.
-     1>SmartProjectorMainWindow.cpp(377): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
-     1>SmartProjectorMainWindow.cpp(241): warning C4189: 'ir' : 지역 변수가 초기화되었으나 참조되지 않았습니다.
-     1>SmartProjectorMainWindow.cpp(324): warning C4189: 'ir' : 지역 변수가 초기화되었으나 참조되지 않았습니다.
-     1>SmartProjectorMainWindow.cpp(581): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
-     1>SmartProjectorMainWindow.cpp(610): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
-     1>SmartProjectorMainWindow.cpp(797): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
-     1>SmartProjectorMainWindow.cpp(796): warning C4101: 'i' :참조되지 않은 지역 변수입니다.
-     1>SmartProjectorMainWindow.cpp(796): warning C4101: 'j' :참조되지 않은 지역 변수입니다.
-     1>SmartProjectorMainWindow.cpp(941): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+     1>c:\gitlocal\celluon\smartprojector\SmartProjectorMainWindow.h(97): warning C4100: 'd' : 참조되지 않은 정식 매개 변수입니다.
+     1>SmartProjectorMainWindow.cpp(160): warning C4305: '=' : 'double'에서 'float'(으)로 잘립니다.
+     1>SmartProjectorMainWindow.cpp(161): warning C4305: '=' : 'double'에서 'float'(으)로 잘립니다.
+     1>SmartProjectorMainWindow.cpp(187): warning C4100: 'value' : 참조되지 않은 정식 매개 변수입니다.
+     1>SmartProjectorMainWindow.cpp(208): warning C4267: '인수' : 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+     1>SmartProjectorMainWindow.cpp(209): warning C4267: '인수' : 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+     1>SmartProjectorMainWindow.cpp(210): warning C4267: '인수' : 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+     1>SmartProjectorMainWindow.cpp(211): warning C4267: '인수' : 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+     1>SmartProjectorMainWindow.cpp(259): warning C4189: 'viewer_enabled' : 지역 변수가 초기화되었으나 참조되지 않았습니다.
+     1>SmartProjectorMainWindow.cpp(353): warning C4267: '인수' : 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+     1>SmartProjectorMainWindow.cpp(355): warning C4267: '인수' : 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+     1>SmartProjectorMainWindow.cpp(357): warning C4267: '인수' : 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+     1>SmartProjectorMainWindow.cpp(359): warning C4267: '인수' : 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+     1>SmartProjectorMainWindow.cpp(416): warning C4267: '인수' : 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+     1>SmartProjectorMainWindow.cpp(471): warning C4267: '인수' : 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+     1>SmartProjectorMainWindow.cpp(493): warning C4267: '인수' : 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+     1>SmartProjectorMainWindow.cpp(938): warning C4267: '=' : 'size_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+     1>SmartProjectorMainWindow.cpp(826): warning C4100: 'userDepth' : 참조되지 않은 정식 매개 변수입니다.
+     1>SmartProjectorMainWindow.cpp(980): warning C4267: '=' : 'size_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+     1>SmartProjectorMainWindow.cpp(1130): warning C4267: '=' : 'size_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+     1>SmartProjectorMainWindow.cpp(1276): warning C4267: '인수' : 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+     1>SmartProjectorMainWindow.cpp(1330): warning C4189: 'fyRatio' : 지역 변수가 초기화되었으나 참조되지 않았습니다.
+     1>SmartProjectorMainWindow.cpp(1329): warning C4189: 'fxRatio' : 지역 변수가 초기화되었으나 참조되지 않았습니다.
+         main.cpp
+     1>c:\_program\opencv\build\include\opencv2\flann\dist.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+     1>C:\_program\libfreenect2-master\include\libfreenect2/frame_listener.hpp(67): warning C4146: 단항 빼기 연산자가 부호 없는 형식에 적용되었습니다. 결과는 역시 unsigned입니다.
+     1>c:\gitlocal\celluon\smartprojector\SmartProjectorMainWindow.h(97): warning C4100: 'd' : 참조되지 않은 정식 매개 변수입니다.
          optimalRectDDJ.cpp
      1>c:\_program\opencv\build\include\opencv2\flann\dist.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
          moc_QImageWidget.cpp
@@ -35,21 +46,20 @@
          moc_SmartProjectorMainWindow.cpp
      1>c:\_program\opencv\build\include\opencv2\flann\dist.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
      1>C:\_program\libfreenect2-master\include\libfreenect2/frame_listener.hpp(67): warning C4146: 단항 빼기 연산자가 부호 없는 형식에 적용되었습니다. 결과는 역시 unsigned입니다.
-     1>c:\users\leo_note\desktop\smartprojector\smartprojector\release\../SmartProjectorMainWindow.h(78): warning C4100: 'd' : 참조되지 않은 정식 매개 변수입니다.
-     1>c:\users\leo_note\desktop\smartprojector\smartprojector\release\../SmartProjectorMainWindow.h(82): warning C4100: 'd' : 참조되지 않은 정식 매개 변수입니다.
+     1>c:\gitlocal\celluon\smartprojector\release\../SmartProjectorMainWindow.h(97): warning C4100: 'd' : 참조되지 않은 정식 매개 변수입니다.
          qrc_SmartProjectorMainWindow.cpp
          코드를 생성하고 있습니다...
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"output\\SmartProjector.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib /LIBPATH:C:/Qt/Qt5.5.1/5.5/msvc2013_64/lib C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\qtmain.lib shell32.lib C:/Qt/Qt5.5.1/5.5/msvc2013_64/lib\Qt5Core.lib C:/_program/opencv/build/x64/vc12/lib/opencv_calib3d249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_contrib249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_core249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_features2d249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_flann249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_gpu249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_highgui249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_imgproc249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_legacy249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_ml249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_nonfree249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_objdetect249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_photo249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_stitching249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_superres249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_ts249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_video249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_videostab249.lib "C:/_program/libfreenect2-master/build/lib/Release/freenect2.lib" "C:/_program/libfreenect2-master/depends/glfw/lib-vc2013/glfw3dll.lib" "C:/_program/libfreenect2-master/depends/libjpeg-turbo64/lib/turbojpeg.lib" "C:/_program/libfreenect2-master/depends/libusb/x64/Release/dll/libusb-1.0.lib" "C:/Program Files (x86)/Intel/OpenCL SDK/4.6/lib/x64/OpenCL.lib" C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Widgets.lib C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Gui.lib C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Core.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"output\SmartProjector.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /MACHINE:X86 /SAFESEH "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" release\QImageWidget.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"output\\SmartProjector.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:C:\qt\Qt5.5.1\5.5\msvc2013_64\lib /LIBPATH:C:/qt/Qt5.5.1/5.5/msvc2013_64/lib C:\qt\Qt5.5.1\5.5\msvc2013_64\lib\qtmain.lib shell32.lib C:/qt/Qt5.5.1/5.5/msvc2013_64/lib\Qt5Core.lib C:/_program/opencv/build/x64/vc12/lib/opencv_calib3d249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_contrib249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_core249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_features2d249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_flann249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_gpu249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_highgui249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_imgproc249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_legacy249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_ml249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_nonfree249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_objdetect249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_photo249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_stitching249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_superres249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_ts249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_video249.lib C:/_program/opencv/build/x64/vc12/lib/opencv_videostab249.lib "C:/_program/libfreenect2-master/build/lib/Release/freenect2.lib" "C:/_program/libfreenect2-master/depends/glfw/lib-vc2013/glfw3dll.lib" "C:/_program/libfreenect2-master/depends/libjpeg-turbo64/lib/turbojpeg.lib" "C:/_program/libfreenect2-master/depends/libusb/x64/Release/dll/libusb-1.0.lib" "C:/Program Files (x86)/Intel/OpenCL SDK/4.6/lib/x64/OpenCL.lib" C:\qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Widgets.lib C:\qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Gui.lib C:\qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Core.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"output\SmartProjector.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /MACHINE:X64 "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" release\QImageWidget.obj
          release\SmartProjectorMainWindow.obj
          release\main.obj
          release\optimalRectDDJ.obj
          release\moc_QImageWidget.obj
          release\moc_SmartProjectorMainWindow.obj
          release\qrc_SmartProjectorMainWindow.obj
-     1>Qt5Core.lib(Qt5Core.dll) : fatal error LNK1112: 'x64' 모듈 컴퓨터 종류가 'X86' 대상 컴퓨터 종류와 충돌합니다.
-     1>"C:\Users\Leo_Note\Desktop\smartprojector\smartprojector\SmartProjector.vcxproj" 프로젝트를 빌드했습니다(Build 대상). - 실패
+         SmartProjector.vcxproj -> C:\GitLocal\Celluon\smartprojector\output\SmartProjector.exe
+     1>"C:\GitLocal\Celluon\smartprojector\SmartProjector.vcxproj" 프로젝트를 빌드했습니다(Build 대상).
 
-빌드하지 못했습니다.
+빌드했습니다.
 
-경과 시간: 00:00:45.17
+경과 시간: 00:00:23.18

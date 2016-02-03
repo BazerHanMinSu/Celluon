@@ -13,13 +13,13 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
@@ -71,14 +71,16 @@ public:
     QDoubleSpinBox *mFovXSpinBox;
     QLabel *label_2;
     QDoubleSpinBox *mFovYSpinBox;
-    QPushButton *pushButton;
+    QCheckBox *mAutoPlaneRotationCB;
+    QCheckBox *mVerticalFlip;
     QHBoxLayout *horizontalLayout_6;
     QLabel *label_3;
-    QLineEdit *mHumanPosX;
+    QDoubleSpinBox *mRotateXSpinBox;
     QLabel *label_4;
-    QLineEdit *mHumanPosY;
+    QDoubleSpinBox *mRotateYSpinBox;
     QLabel *label_5;
-    QLineEdit *mHumanPosZ;
+    QDoubleSpinBox *mRotateZSpinBox;
+    QCheckBox *mHomographyCB;
     QPlainTextEdit *mTextConsole;
     QHBoxLayout *horizontalLayout_7;
     QToolButton *mSaveBtn;
@@ -282,12 +284,27 @@ public:
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
         label = new QLabel(centralwidget);
         label->setObjectName(QStringLiteral("label"));
+        QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Preferred);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(label->sizePolicy().hasHeightForWidth());
+        label->setSizePolicy(sizePolicy1);
+        label->setMinimumSize(QSize(42, 0));
+        label->setMaximumSize(QSize(42, 16777215));
         label->setFrameShape(QFrame::Box);
 
         horizontalLayout_5->addWidget(label);
 
         mFovXSpinBox = new QDoubleSpinBox(centralwidget);
         mFovXSpinBox->setObjectName(QStringLiteral("mFovXSpinBox"));
+        QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(mFovXSpinBox->sizePolicy().hasHeightForWidth());
+        mFovXSpinBox->setSizePolicy(sizePolicy2);
+        mFovXSpinBox->setMinimumSize(QSize(60, 0));
+        mFovXSpinBox->setMaximumSize(QSize(50, 16777215));
+        mFovXSpinBox->setDecimals(2);
         mFovXSpinBox->setMaximum(170);
         mFovXSpinBox->setSingleStep(0.1);
         mFovXSpinBox->setValue(75);
@@ -296,22 +313,44 @@ public:
 
         label_2 = new QLabel(centralwidget);
         label_2->setObjectName(QStringLiteral("label_2"));
+        sizePolicy1.setHeightForWidth(label_2->sizePolicy().hasHeightForWidth());
+        label_2->setSizePolicy(sizePolicy1);
+        label_2->setMinimumSize(QSize(40, 0));
+        label_2->setMaximumSize(QSize(42, 16777215));
         label_2->setFrameShape(QFrame::Box);
 
         horizontalLayout_5->addWidget(label_2);
 
         mFovYSpinBox = new QDoubleSpinBox(centralwidget);
         mFovYSpinBox->setObjectName(QStringLiteral("mFovYSpinBox"));
+        sizePolicy2.setHeightForWidth(mFovYSpinBox->sizePolicy().hasHeightForWidth());
+        mFovYSpinBox->setSizePolicy(sizePolicy2);
+        mFovYSpinBox->setMinimumSize(QSize(60, 0));
+        mFovYSpinBox->setMaximumSize(QSize(50, 16777215));
+        mFovYSpinBox->setDecimals(2);
         mFovYSpinBox->setMaximum(170);
         mFovYSpinBox->setSingleStep(0.1);
         mFovYSpinBox->setValue(65);
 
         horizontalLayout_5->addWidget(mFovYSpinBox);
 
-        pushButton = new QPushButton(centralwidget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
+        mAutoPlaneRotationCB = new QCheckBox(centralwidget);
+        mAutoPlaneRotationCB->setObjectName(QStringLiteral("mAutoPlaneRotationCB"));
+        sizePolicy2.setHeightForWidth(mAutoPlaneRotationCB->sizePolicy().hasHeightForWidth());
+        mAutoPlaneRotationCB->setSizePolicy(sizePolicy2);
+        mAutoPlaneRotationCB->setMinimumSize(QSize(85, 0));
+        mAutoPlaneRotationCB->setMaximumSize(QSize(50, 16777215));
 
-        horizontalLayout_5->addWidget(pushButton);
+        horizontalLayout_5->addWidget(mAutoPlaneRotationCB);
+
+        mVerticalFlip = new QCheckBox(centralwidget);
+        mVerticalFlip->setObjectName(QStringLiteral("mVerticalFlip"));
+        sizePolicy2.setHeightForWidth(mVerticalFlip->sizePolicy().hasHeightForWidth());
+        mVerticalFlip->setSizePolicy(sizePolicy2);
+        mVerticalFlip->setMinimumSize(QSize(60, 0));
+        mVerticalFlip->setMaximumSize(QSize(50, 16777215));
+
+        horizontalLayout_5->addWidget(mVerticalFlip);
 
 
         verticalLayout_4->addLayout(horizontalLayout_5);
@@ -320,77 +359,89 @@ public:
         horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
         label_3 = new QLabel(centralwidget);
         label_3->setObjectName(QStringLiteral("label_3"));
-        QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Preferred);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(label_3->sizePolicy().hasHeightForWidth());
         label_3->setSizePolicy(sizePolicy1);
-        label_3->setMinimumSize(QSize(127, 0));
+        label_3->setMinimumSize(QSize(123, 0));
         label_3->setMaximumSize(QSize(90, 16777215));
         label_3->setFrameShape(QFrame::Box);
 
         horizontalLayout_6->addWidget(label_3);
 
-        mHumanPosX = new QLineEdit(centralwidget);
-        mHumanPosX->setObjectName(QStringLiteral("mHumanPosX"));
-        QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Fixed);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(mHumanPosX->sizePolicy().hasHeightForWidth());
-        mHumanPosX->setSizePolicy(sizePolicy2);
-        mHumanPosX->setMinimumSize(QSize(55, 0));
-        mHumanPosX->setMaximumSize(QSize(50, 16777215));
+        mRotateXSpinBox = new QDoubleSpinBox(centralwidget);
+        mRotateXSpinBox->setObjectName(QStringLiteral("mRotateXSpinBox"));
+        mRotateXSpinBox->setMinimumSize(QSize(60, 0));
+        mRotateXSpinBox->setMaximumSize(QSize(60, 16777215));
+        mRotateXSpinBox->setDecimals(4);
+        mRotateXSpinBox->setMinimum(-80);
+        mRotateXSpinBox->setMaximum(80);
+        mRotateXSpinBox->setSingleStep(1);
+        mRotateXSpinBox->setValue(0);
 
-        horizontalLayout_6->addWidget(mHumanPosX);
+        horizontalLayout_6->addWidget(mRotateXSpinBox);
 
         label_4 = new QLabel(centralwidget);
         label_4->setObjectName(QStringLiteral("label_4"));
         sizePolicy1.setHeightForWidth(label_4->sizePolicy().hasHeightForWidth());
         label_4->setSizePolicy(sizePolicy1);
-        label_4->setMinimumSize(QSize(30, 0));
-        label_4->setMaximumSize(QSize(30, 16777215));
+        label_4->setMinimumSize(QSize(28, 0));
+        label_4->setMaximumSize(QSize(28, 16777215));
         label_4->setFrameShape(QFrame::Box);
 
         horizontalLayout_6->addWidget(label_4);
 
-        mHumanPosY = new QLineEdit(centralwidget);
-        mHumanPosY->setObjectName(QStringLiteral("mHumanPosY"));
-        sizePolicy2.setHeightForWidth(mHumanPosY->sizePolicy().hasHeightForWidth());
-        mHumanPosY->setSizePolicy(sizePolicy2);
-        mHumanPosY->setMinimumSize(QSize(55, 0));
-        mHumanPosY->setMaximumSize(QSize(50, 16777215));
+        mRotateYSpinBox = new QDoubleSpinBox(centralwidget);
+        mRotateYSpinBox->setObjectName(QStringLiteral("mRotateYSpinBox"));
+        mRotateYSpinBox->setMinimumSize(QSize(60, 0));
+        mRotateYSpinBox->setMaximumSize(QSize(60, 16777215));
+        mRotateYSpinBox->setDecimals(4);
+        mRotateYSpinBox->setMinimum(-80);
+        mRotateYSpinBox->setMaximum(80);
+        mRotateYSpinBox->setSingleStep(1);
+        mRotateYSpinBox->setValue(0);
 
-        horizontalLayout_6->addWidget(mHumanPosY);
+        horizontalLayout_6->addWidget(mRotateYSpinBox);
 
         label_5 = new QLabel(centralwidget);
         label_5->setObjectName(QStringLiteral("label_5"));
         sizePolicy1.setHeightForWidth(label_5->sizePolicy().hasHeightForWidth());
         label_5->setSizePolicy(sizePolicy1);
-        label_5->setMinimumSize(QSize(30, 0));
-        label_5->setMaximumSize(QSize(30, 16777215));
+        label_5->setMinimumSize(QSize(28, 0));
+        label_5->setMaximumSize(QSize(28, 16777215));
         label_5->setFrameShape(QFrame::Box);
 
         horizontalLayout_6->addWidget(label_5);
 
-        mHumanPosZ = new QLineEdit(centralwidget);
-        mHumanPosZ->setObjectName(QStringLiteral("mHumanPosZ"));
-        sizePolicy2.setHeightForWidth(mHumanPosZ->sizePolicy().hasHeightForWidth());
-        mHumanPosZ->setSizePolicy(sizePolicy2);
-        mHumanPosZ->setMinimumSize(QSize(55, 0));
-        mHumanPosZ->setMaximumSize(QSize(50, 16777215));
+        mRotateZSpinBox = new QDoubleSpinBox(centralwidget);
+        mRotateZSpinBox->setObjectName(QStringLiteral("mRotateZSpinBox"));
+        QSizePolicy sizePolicy3(QSizePolicy::Minimum, QSizePolicy::Fixed);
+        sizePolicy3.setHorizontalStretch(60);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(mRotateZSpinBox->sizePolicy().hasHeightForWidth());
+        mRotateZSpinBox->setSizePolicy(sizePolicy3);
+        mRotateZSpinBox->setMaximumSize(QSize(60, 16777215));
+        mRotateZSpinBox->setDecimals(4);
+        mRotateZSpinBox->setMinimum(-80);
+        mRotateZSpinBox->setMaximum(80);
+        mRotateZSpinBox->setSingleStep(1);
+        mRotateZSpinBox->setValue(1.5);
 
-        horizontalLayout_6->addWidget(mHumanPosZ);
+        horizontalLayout_6->addWidget(mRotateZSpinBox);
 
 
         verticalLayout_4->addLayout(horizontalLayout_6);
 
+        mHomographyCB = new QCheckBox(centralwidget);
+        mHomographyCB->setObjectName(QStringLiteral("mHomographyCB"));
+
+        verticalLayout_4->addWidget(mHomographyCB);
+
         mTextConsole = new QPlainTextEdit(centralwidget);
         mTextConsole->setObjectName(QStringLiteral("mTextConsole"));
-        QSizePolicy sizePolicy3(QSizePolicy::Fixed, QSizePolicy::Expanding);
-        sizePolicy3.setHorizontalStretch(0);
-        sizePolicy3.setVerticalStretch(0);
-        sizePolicy3.setHeightForWidth(mTextConsole->sizePolicy().hasHeightForWidth());
-        mTextConsole->setSizePolicy(sizePolicy3);
+        QSizePolicy sizePolicy4(QSizePolicy::Fixed, QSizePolicy::Expanding);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(mTextConsole->sizePolicy().hasHeightForWidth());
+        mTextConsole->setSizePolicy(sizePolicy4);
         mTextConsole->setMinimumSize(QSize(390, 0));
 
         verticalLayout_4->addWidget(mTextConsole);
@@ -445,10 +496,12 @@ public:
         mInspectEndBtn->setText(QApplication::translate("CarInspectMainWindow", "Stop", 0));
         label->setText(QApplication::translate("CarInspectMainWindow", "FOV x  ", 0));
         label_2->setText(QApplication::translate("CarInspectMainWindow", "FOV y  ", 0));
-        pushButton->setText(QApplication::translate("CarInspectMainWindow", "Optimization", 0));
-        label_3->setText(QApplication::translate("CarInspectMainWindow", "Human Position X:", 0));
-        label_4->setText(QApplication::translate("CarInspectMainWindow", "Y:  ", 0));
-        label_5->setText(QApplication::translate("CarInspectMainWindow", "Z:", 0));
+        mAutoPlaneRotationCB->setText(QApplication::translate("CarInspectMainWindow", "Auto Rotate", 0));
+        mVerticalFlip->setText(QApplication::translate("CarInspectMainWindow", "v flip", 0));
+        label_3->setText(QApplication::translate("CarInspectMainWindow", "PlaneRotatation Rx:", 0));
+        label_4->setText(QApplication::translate("CarInspectMainWindow", "Ry:  ", 0));
+        label_5->setText(QApplication::translate("CarInspectMainWindow", "Rz:", 0));
+        mHomographyCB->setText(QApplication::translate("CarInspectMainWindow", "Homography", 0));
         mSaveBtn->setText(QApplication::translate("CarInspectMainWindow", "\354\240\200\354\236\245", 0));
         mKinectCalibrationBtn->setText(QApplication::translate("CarInspectMainWindow", "Proejctor & Kinect \n"
 "Calibration", 0));
