@@ -1,0 +1,10 @@
+<RCC>
+  <qresource prefix="/">
+    <file>images/greencircle.png</file>
+    <file>images/redcircle.png</file>
+    <file>images/whitecircle.png</file>
+    <file>images/yellowcircle.png</file>
+    <file>images/noimage.png</file>
+    <file>images/tslogo.png</file>
+  </qresource>
+</RCC>
