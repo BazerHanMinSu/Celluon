@@ -1,12 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Release|x64">
-      <Configuration>Release</Configuration>
-      <Platform>x64</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
@@ -16,6 +24,15 @@
     <Keyword>Qt4VSv1.0</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <PlatformToolSet>v120</PlatformToolSet>
+    <OutputDirectory>output\</OutputDirectory>
+    <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
+    <CharacterSet>NotSet</CharacterSet>
+    <ConfigurationType>Application</ConfigurationType>
+    <IntermediateDirectory>release\</IntermediateDirectory>
+    <PrimaryOutput>SmartProjector</PrimaryOutput>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <PlatformToolSet>v120</PlatformToolSet>
     <OutputDirectory>output\</OutputDirectory>
@@ -24,6 +41,15 @@
     <ConfigurationType>Application</ConfigurationType>
     <IntermediateDirectory>release\</IntermediateDirectory>
     <PrimaryOutput>SmartProjector</PrimaryOutput>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <PlatformToolSet>v120</PlatformToolSet>
+    <OutputDirectory>output\</OutputDirectory>
+    <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
+    <CharacterSet>NotSet</CharacterSet>
+    <ConfigurationType>Application</ConfigurationType>
+    <IntermediateDirectory>debug\</IntermediateDirectory>
+    <PrimaryOutput>SmartProjectorD</PrimaryOutput>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <PlatformToolSet>v120</PlatformToolSet>
@@ -36,7 +62,13 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
@@ -44,19 +76,24 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">output\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">output\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">SmartProjector</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">SmartProjector</TargetName>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</IgnoreImportLibrary>
     <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</IgnoreImportLibrary>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">output\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">output\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">SmartProjectorD</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">SmartProjectorD</TargetName>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</IgnoreImportLibrary>
     <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</IgnoreImportLibrary>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;d:\Libs\opencv2411\opencv\build\include\opencv;d:\Libs\opencv2411\opencv\build\include;..\..\..\Libs\libfreenect2-master\include;..\..\..\Libs\libfreenect2-master\include\internal;..\..\..\Libs\libfreenect2-master\build;..\..\..\Libs\libfreenect2-master\src\tinythread;..\..\..\Libs\libfreenect2-master\depends\libusb\libusb;..\..\..\Libs\libfreenect2-master\depends\libjpeg-turbo64\include;D:/Libs/libfreenect2-masterldepends/glfw/include;C:/Program;Files;(x86)/Intel/OpenCL;SDK/4.6/include;..\..\..\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\include;..\..\..\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\include\QtWidgets;..\..\..\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\include\QtGui;..\..\..\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\include\QtANGLE;..\..\..\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\include\QtCore;release;.;..\..\..\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\mkspecs\win32-msvc2013;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;C:\_program\opencv\build\include\opencv;C:\_program\opencv\build\include;C:\_program\libfreenect2-master\include;C:\_program\libfreenect2-master\include\internal;C:\_program\libfreenect2-master\build;C:\_program\libfreenect2-master\src\tinythread;C:\_program\libfreenect2-master\depends\libusb\libusb;C:\_program\libfreenect2-master\depends\libjpeg-turbo64\include;C:/_program/libfreenect2-masterldepends/glfw/include;C:/Program;Files;(x86)/Intel/OpenCL;SDK/4.6/include;C:\Qt\Qt5.5.1\5.5\msvc2013_64\include;C:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtWidgets;C:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtGui;C:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtANGLE;C:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore;release;.;C:\Qt\Qt5.5.1\5.5\msvc2013_64\mkspecs\win32-msvc2013;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:strictStrings -w34100 -w34189 -w44996 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>release\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -64,7 +101,7 @@
       <ExceptionHandling>Sync</ExceptionHandling>
       <ObjectFileName>release\</ObjectFileName>
       <Optimization>MaxSpeed</Optimization>
-      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;WIN64;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <ProgramDataBaseFileName>
       </ProgramDataBaseFileName>
@@ -75,8 +112,8 @@
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>D:\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\lib\qtmain.lib;shell32.lib;D:/libs/qt/qt5.5.0_x64/5.5/msvc2013_64/lib\Qt5Core.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_calib3d2411.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_contrib2411.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_core2411.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_features2d2411.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_flann2411.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_gpu2411.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_highgui2411.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_imgproc2411.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_legacy2411.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_ml2411.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_nonfree2411.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_objdetect2411.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_photo2411.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_stitching2411.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_superres2411.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_ts2411.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_video2411.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_videostab2411.lib;D:/Libs/libfreenect2-master/build/lib/Release/freenect2.lib;D:/Libs/libfreenect2-master/depends/glfw/lib-vc2013/glfw3dll.lib;D:/Libs/libfreenect2-master/depends/libjpeg-turbo64/lib/turbojpeg.lib;D:/Libs/libfreenect2-master/depends/libusb/x64/Release/dll/libusb-1.0.lib;"C:/Program Files (x86)/Intel/OpenCL SDK/4.6/lib/x64/OpenCL.lib";D:\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\lib\Qt5Widgets.lib;D:\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\lib\Qt5Gui.lib;D:\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\lib\Qt5Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>D:\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\lib;D:/libs/qt/qt5.5.0_x64/5.5/msvc2013_64/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\qtmain.lib;shell32.lib;C:/Qt/Qt5.5.1/5.5/msvc2013_64/lib\Qt5Core.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_calib3d249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_contrib249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_core249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_features2d249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_flann249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_gpu249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_highgui249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_imgproc249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_legacy249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_ml249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_nonfree249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_objdetect249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_photo249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_stitching249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_superres249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_ts249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_video249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_videostab249.lib;C:/_program/libfreenect2-master/build/lib/Release/freenect2.lib;C:/_program/libfreenect2-master/depends/glfw/lib-vc2013/glfw3dll.lib;C:/_program/libfreenect2-master/depends/libjpeg-turbo64/lib/turbojpeg.lib;C:/_program/libfreenect2-master/depends/libusb/x64/Release/dll/libusb-1.0.lib;"C:/Program Files (x86)/Intel/OpenCL SDK/4.6/lib/x64/OpenCL.lib";C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Widgets.lib;C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Gui.lib;C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib;C:/Qt/Qt5.5.1/5.5/msvc2013_64/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -84,7 +121,7 @@
       <LinkIncremental>false</LinkIncremental>
       <OutputFile>$(OutDir)\SmartProjector.exe</OutputFile>
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Link>
     <Midl>
@@ -93,12 +130,54 @@
       <WarningLevel>0</WarningLevel>
     </Midl>
     <ResourceCompile>
-      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;WIN64;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;d:\Libs\opencv2411\opencv\build\include\opencv;d:\Libs\opencv2411\opencv\build\include;..\..\..\Libs\libfreenect2-master\include;..\..\..\Libs\libfreenect2-master\include\internal;..\..\..\Libs\libfreenect2-master\build;..\..\..\Libs\libfreenect2-master\src\tinythread;..\..\..\Libs\libfreenect2-master\depends\libusb\libusb;..\..\..\Libs\libfreenect2-master\depends\libjpeg-turbo64\include;D:/Libs/libfreenect2-masterldepends/glfw/include;C:/Program;Files;(x86)/Intel/OpenCL;SDK/4.6/include;..\..\..\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\include;..\..\..\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\include\QtWidgets;..\..\..\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\include\QtGui;..\..\..\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\include\QtANGLE;..\..\..\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\include\QtCore;debug;.;..\..\..\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\mkspecs\win32-msvc2013;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;C:\_program\opencv\build\include\opencv;C:\_program\opencv\build\include;C:\_program\libfreenect2-master\include;C:\_program\libfreenect2-master\include\internal;C:\_program\libfreenect2-master\build;C:\_program\libfreenect2-master\src\tinythread;C:\_program\libfreenect2-master\depends\libusb\libusb;C:\_program\libfreenect2-master\depends\libjpeg-turbo64\include;C:/_program/libfreenect2-masterldepends/glfw/include;C:/Program;Files;(x86)/Intel/OpenCL;SDK/4.6/include;C:\Qt\Qt5.5.1\5.5\msvc2013_64\include;C:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtWidgets;C:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtGui;C:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtANGLE;C:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore;release;.;C:\Qt\Qt5.5.1\5.5\msvc2013_64\mkspecs\win32-msvc2013;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-Zc:strictStrings -w34100 -w34189 -w44996 %(AdditionalOptions)</AdditionalOptions>
+      <AssemblerListingLocation>release\</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ObjectFileName>release\</ObjectFileName>
+      <Optimization>MaxSpeed</Optimization>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessToFile>false</PreprocessToFile>
+      <ProgramDataBaseFileName>
+      </ProgramDataBaseFileName>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\qtmain.lib;shell32.lib;C:/Qt/Qt5.5.1/5.5/msvc2013_64/lib\Qt5Core.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_calib3d249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_contrib249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_core249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_features2d249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_flann249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_gpu249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_highgui249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_imgproc249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_legacy249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_ml249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_nonfree249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_objdetect249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_photo249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_stitching249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_superres249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_ts249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_video249.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_videostab249.lib;C:/_program/libfreenect2-master/build/lib/Release/freenect2.lib;C:/_program/libfreenect2-master/depends/glfw/lib-vc2013/glfw3dll.lib;C:/_program/libfreenect2-master/depends/libjpeg-turbo64/lib/turbojpeg.lib;C:/_program/libfreenect2-master/depends/libusb/x64/Release/dll/libusb-1.0.lib;"C:/Program Files (x86)/Intel/OpenCL SDK/4.6/lib/x64/OpenCL.lib";C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Widgets.lib;C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Gui.lib;C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib;C:/Qt/Qt5.5.1/5.5/msvc2013_64/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreImportLibrary>true</IgnoreImportLibrary>
+      <LinkIncremental>false</LinkIncremental>
+      <OutputFile>$(OutDir)\SmartProjector.exe</OutputFile>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <SubSystem>Windows</SubSystem>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Link>
+    <Midl>
+      <DefaultCharType>Unsigned</DefaultCharType>
+      <EnableErrorChecks>None</EnableErrorChecks>
+      <WarningLevel>0</WarningLevel>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.;C:\_program\opencv\build\include\opencv;C:\_program\opencv\build\include;C:\_program\libfreenect2-master\include;C:\_program\libfreenect2-master\include\internal;C:\_program\libfreenect2-master\build;C:\_program\libfreenect2-master\src\tinythread;C:\_program\libfreenect2-master\depends\libusb\libusb;C:\_program\libfreenect2-master\depends\libjpeg-turbo64\include;C:/_program/libfreenect2-masterldepends/glfw/include;C:/Program;Files;(x86)/Intel/OpenCL;SDK/4.6/include;C:\Qt\Qt5.5.1\5.5\msvc2013_64\include;C:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtWidgets;C:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtGui;C:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtANGLE;C:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore;debug;.;C:\Qt\Qt5.5.1\5.5\msvc2013_64\mkspecs\win32-msvc2013;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-w34100 -w34189 -w44996 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>debug\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -106,7 +185,7 @@
       <ExceptionHandling>Sync</ExceptionHandling>
       <ObjectFileName>debug\</ObjectFileName>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;WIN64;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -115,8 +194,8 @@
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>D:\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\lib\qtmaind.lib;shell32.lib;D:/libs/qt/qt5.5.0_x64/5.5/msvc2013_64/lib\Qt5Cored.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_calib3d2411d.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_contrib2411d.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_core2411d.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_features2d2411d.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_flann2411d.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_gpu2411d.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_highgui2411d.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_imgproc2411d.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_legacy2411d.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_ml2411d.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_nonfree2411d.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_objdetect2411d.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_photo2411d.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_stitching2411d.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_superres2411d.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_ts2411d.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_video2411d.lib;d:/Libs/opencv2411/opencv/build/x64/vc12/lib/opencv_videostab2411d.lib;D:/Libs/libfreenect2-master/build/lib/Debug/freenect2d.lib;D:/Libs/libfreenect2-master/depends/glfw/lib-vc2013/glfw3dll.lib;D:/Libs/libfreenect2-master/depends/libjpeg-turbo64/lib/turbojpeg.lib;D:/Libs/libfreenect2-master/depends/libusb/x64/Release/dll/libusb-1.0.lib;"C:/Program Files (x86)/Intel/OpenCL SDK/4.6/lib/x64/OpenCL.lib";D:\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\lib\Qt5Widgetsd.lib;D:\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\lib\Qt5Guid.lib;D:\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\lib\Qt5Cored.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>D:\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\lib;D:/libs/qt/qt5.5.0_x64/5.5/msvc2013_64/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\qtmaind.lib;shell32.lib;C:/Qt/Qt5.5.1/5.5/msvc2013_64/lib\Qt5Cored.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_calib3d249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_contrib249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_core249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_features2d249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_flann249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_gpu249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_highgui249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_imgproc249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_legacy249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_ml249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_nonfree249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_objdetect249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_photo249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_stitching249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_superres249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_ts249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_video249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_videostab249d.lib;C:/_program/libfreenect2-master/build/lib/Debug/freenect2d.lib;C:/_program/libfreenect2-master/depends/glfw/lib-vc2013/glfw3dll.lib;C:/_program/libfreenect2-master/depends/libjpeg-turbo64/lib/turbojpeg.lib;C:/_program/libfreenect2-master/depends/libusb/x64/Release/dll/libusb-1.0.lib;"C:/Program Files (x86)/Intel/OpenCL SDK/4.6/lib/x64/OpenCL.lib";C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Widgetsd.lib;C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Guid.lib;C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Cored.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib;C:/Qt/Qt5.5.1/5.5/msvc2013_64/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -132,114 +211,223 @@
       <WarningLevel>0</WarningLevel>
     </Midl>
     <ResourceCompile>
-      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;WIN64;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.;C:\_program\opencv\build\include\opencv;C:\_program\opencv\build\include;C:\_program\libfreenect2-master\include;C:\_program\libfreenect2-master\include\internal;C:\_program\libfreenect2-master\build;C:\_program\libfreenect2-master\src\tinythread;C:\_program\libfreenect2-master\depends\libusb\libusb;C:\_program\libfreenect2-master\depends\libjpeg-turbo64\include;C:/_program/libfreenect2-masterldepends/glfw/include;C:/Program;Files;(x86)/Intel/OpenCL;SDK/4.6/include;C:\Qt\Qt5.5.1\5.5\msvc2013_64\include;C:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtWidgets;C:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtGui;C:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtANGLE;C:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore;debug;.;C:\Qt\Qt5.5.1\5.5\msvc2013_64\mkspecs\win32-msvc2013;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-w34100 -w34189 -w44996 %(AdditionalOptions)</AdditionalOptions>
+      <AssemblerListingLocation>debug\</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ObjectFileName>debug\</ObjectFileName>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessToFile>false</PreprocessToFile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\qtmaind.lib;shell32.lib;C:/Qt/Qt5.5.1/5.5/msvc2013_64/lib\Qt5Cored.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_calib3d249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_contrib249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_core249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_features2d249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_flann249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_gpu249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_highgui249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_imgproc249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_legacy249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_ml249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_nonfree249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_objdetect249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_photo249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_stitching249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_superres249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_ts249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_video249d.lib;C:/_program/opencv/build/x64/vc12/lib/opencv_videostab249d.lib;C:/_program/libfreenect2-master/build/lib/Debug/freenect2d.lib;C:/_program/libfreenect2-master/depends/glfw/lib-vc2013/glfw3dll.lib;C:/_program/libfreenect2-master/depends/libjpeg-turbo64/lib/turbojpeg.lib;C:/_program/libfreenect2-master/depends/libusb/x64/Release/dll/libusb-1.0.lib;"C:/Program Files (x86)/Intel/OpenCL SDK/4.6/lib/x64/OpenCL.lib";C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Widgetsd.lib;C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Guid.lib;C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Cored.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib;C:/Qt/Qt5.5.1/5.5/msvc2013_64/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreImportLibrary>true</IgnoreImportLibrary>
+      <OutputFile>$(OutDir)\SmartProjectorD.exe</OutputFile>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <SubSystem>Windows</SubSystem>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Link>
+    <Midl>
+      <DefaultCharType>Unsigned</DefaultCharType>
+      <EnableErrorChecks>None</EnableErrorChecks>
+      <WarningLevel>0</WarningLevel>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="optimalRectDDJ.cpp" />
     <ClCompile Include="QImageWidget.cpp" />
     <ClCompile Include="SmartProjectorMainWindow.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="optimalRectDDJ.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="QImageWidget.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">QImageWidget.h;%(AdditionalInputs)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">QImageWidget.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+if errorlevel 1 goto VCEnd
+C:\Qt\Qt5.5.1\5.5\msvc2013_64\bin\moc.exe  -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/Leo_Note/Desktop/smartprojector/smartprojector -IC:/_program/opencv/build/include/opencv -IC:/_program/opencv/build/include -IC:/_program/libfreenect2-master/include -IC:/_program/libfreenect2-master/include/internal -IC:/_program/libfreenect2-master/build -IC:/_program/libfreenect2-master/src/tinythread -IC:/_program/libfreenect2-master/depends/libusb/libusb -IC:/_program/libfreenect2-master/depends/libjpeg-turbo64/include -IC:/_program/libfreenect2-masterldepends/glfw/include -IC:/Program -IC:/Users/Leo_Note/Desktop/smartprojector/smartprojector/Files -I"C:/Users/Leo_Note/Desktop/smartprojector/smartprojector/(x86)/Intel/OpenCL" -IC:/Users/Leo_Note/Desktop/smartprojector/smartprojector/SDK/4.6/include -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtCore QImageWidget.h -o release\moc_QImageWidget.cpp
+if errorlevel 1 goto VCEnd
+endlocal</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
 if errorlevel 1 goto VCEnd
-D:\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\bin\moc.exe  -DUNICODE -DWIN32 -DWIN64 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -ID:/libs/qt/qt5.5.0_x64/5.5/msvc2013_64/mkspecs/win32-msvc2013 -I"D:/Documents/2015?2?? ??/smartprojector" -Id:/Libs/opencv2411/opencv/build/include/opencv -Id:/Libs/opencv2411/opencv/build/include -ID:/Libs/libfreenect2-master/include -ID:/Libs/libfreenect2-master/include/internal -ID:/Libs/libfreenect2-master/build -ID:/Libs/libfreenect2-master/src/tinythread -ID:/Libs/libfreenect2-master/depends/libusb/libusb -ID:/Libs/libfreenect2-master/depends/libjpeg-turbo64/include -ID:/Libs/libfreenect2-masterldepends/glfw/include -IC:/Program -I"D:/Documents/2015?2?? ??/smartprojector/Files" -I"D:/Documents/2015?2?? ??/smartprojector/(x86)/Intel/OpenCL" -I"D:/Documents/2015?2?? ??/smartprojector/SDK/4.6/include" -ID:/libs/qt/qt5.5.0_x64/5.5/msvc2013_64/include -ID:/libs/qt/qt5.5.0_x64/5.5/msvc2013_64/include/QtWidgets -ID:/libs/qt/qt5.5.0_x64/5.5/msvc2013_64/include/QtGui -ID:/libs/qt/qt5.5.0_x64/5.5/msvc2013_64/include/QtANGLE -ID:/libs/qt/qt5.5.0_x64/5.5/msvc2013_64/include/QtCore QImageWidget.h -o release\moc_QImageWidget.cpp
+C:\Qt\Qt5.5.1\5.5\msvc2013_64\bin\moc.exe  -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/Leo_Note/Desktop/smartprojector/smartprojector -IC:/_program/opencv/build/include/opencv -IC:/_program/opencv/build/include -IC:/_program/libfreenect2-master/include -IC:/_program/libfreenect2-master/include/internal -IC:/_program/libfreenect2-master/build -IC:/_program/libfreenect2-master/src/tinythread -IC:/_program/libfreenect2-master/depends/libusb/libusb -IC:/_program/libfreenect2-master/depends/libjpeg-turbo64/include -IC:/_program/libfreenect2-masterldepends/glfw/include -IC:/Program -IC:/Users/Leo_Note/Desktop/smartprojector/smartprojector/Files -I"C:/Users/Leo_Note/Desktop/smartprojector/smartprojector/(x86)/Intel/OpenCL" -IC:/Users/Leo_Note/Desktop/smartprojector/smartprojector/SDK/4.6/include -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtCore QImageWidget.h -o release\moc_QImageWidget.cpp
 if errorlevel 1 goto VCEnd
 endlocal</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MOC QImageWidget.h</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MOC QImageWidget.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_QImageWidget.cpp;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\moc_QImageWidget.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">QImageWidget.h;%(AdditionalInputs)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">QImageWidget.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+if errorlevel 1 goto VCEnd
+C:\Qt\Qt5.5.1\5.5\msvc2013_64\bin\moc.exe  -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/Leo_Note/Desktop/smartprojector/smartprojector -IC:/_program/opencv/build/include/opencv -IC:/_program/opencv/build/include -IC:/_program/libfreenect2-master/include -IC:/_program/libfreenect2-master/include/internal -IC:/_program/libfreenect2-master/build -IC:/_program/libfreenect2-master/src/tinythread -IC:/_program/libfreenect2-master/depends/libusb/libusb -IC:/_program/libfreenect2-master/depends/libjpeg-turbo64/include -IC:/_program/libfreenect2-masterldepends/glfw/include -IC:/Program -IC:/Users/Leo_Note/Desktop/smartprojector/smartprojector/Files -I"C:/Users/Leo_Note/Desktop/smartprojector/smartprojector/(x86)/Intel/OpenCL" -IC:/Users/Leo_Note/Desktop/smartprojector/smartprojector/SDK/4.6/include -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtCore QImageWidget.h -o debug\moc_QImageWidget.cpp
+if errorlevel 1 goto VCEnd
+endlocal</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
 if errorlevel 1 goto VCEnd
-D:\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\bin\moc.exe  -DUNICODE -DWIN32 -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -ID:/libs/qt/qt5.5.0_x64/5.5/msvc2013_64/mkspecs/win32-msvc2013 -I"D:/Documents/2015?2?? ??/smartprojector" -Id:/Libs/opencv2411/opencv/build/include/opencv -Id:/Libs/opencv2411/opencv/build/include -ID:/Libs/libfreenect2-master/include -ID:/Libs/libfreenect2-master/include/internal -ID:/Libs/libfreenect2-master/build -ID:/Libs/libfreenect2-master/src/tinythread -ID:/Libs/libfreenect2-master/depends/libusb/libusb -ID:/Libs/libfreenect2-master/depends/libjpeg-turbo64/include -ID:/Libs/libfreenect2-masterldepends/glfw/include -IC:/Program -I"D:/Documents/2015?2?? ??/smartprojector/Files" -I"D:/Documents/2015?2?? ??/smartprojector/(x86)/Intel/OpenCL" -I"D:/Documents/2015?2?? ??/smartprojector/SDK/4.6/include" -ID:/libs/qt/qt5.5.0_x64/5.5/msvc2013_64/include -ID:/libs/qt/qt5.5.0_x64/5.5/msvc2013_64/include/QtWidgets -ID:/libs/qt/qt5.5.0_x64/5.5/msvc2013_64/include/QtGui -ID:/libs/qt/qt5.5.0_x64/5.5/msvc2013_64/include/QtANGLE -ID:/libs/qt/qt5.5.0_x64/5.5/msvc2013_64/include/QtCore QImageWidget.h -o debug\moc_QImageWidget.cpp
+C:\Qt\Qt5.5.1\5.5\msvc2013_64\bin\moc.exe  -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/Leo_Note/Desktop/smartprojector/smartprojector -IC:/_program/opencv/build/include/opencv -IC:/_program/opencv/build/include -IC:/_program/libfreenect2-master/include -IC:/_program/libfreenect2-master/include/internal -IC:/_program/libfreenect2-master/build -IC:/_program/libfreenect2-master/src/tinythread -IC:/_program/libfreenect2-master/depends/libusb/libusb -IC:/_program/libfreenect2-master/depends/libjpeg-turbo64/include -IC:/_program/libfreenect2-masterldepends/glfw/include -IC:/Program -IC:/Users/Leo_Note/Desktop/smartprojector/smartprojector/Files -I"C:/Users/Leo_Note/Desktop/smartprojector/smartprojector/(x86)/Intel/OpenCL" -IC:/Users/Leo_Note/Desktop/smartprojector/smartprojector/SDK/4.6/include -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtCore QImageWidget.h -o debug\moc_QImageWidget.cpp
 if errorlevel 1 goto VCEnd
 endlocal</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC QImageWidget.h</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MOC QImageWidget.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_QImageWidget.cpp;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\moc_QImageWidget.cpp;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="SmartProjectorMainWindow.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">SmartProjectorMainWindow.h;%(AdditionalInputs)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">SmartProjectorMainWindow.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+if errorlevel 1 goto VCEnd
+C:\Qt\Qt5.5.1\5.5\msvc2013_64\bin\moc.exe  -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/Leo_Note/Desktop/smartprojector/smartprojector -IC:/_program/opencv/build/include/opencv -IC:/_program/opencv/build/include -IC:/_program/libfreenect2-master/include -IC:/_program/libfreenect2-master/include/internal -IC:/_program/libfreenect2-master/build -IC:/_program/libfreenect2-master/src/tinythread -IC:/_program/libfreenect2-master/depends/libusb/libusb -IC:/_program/libfreenect2-master/depends/libjpeg-turbo64/include -IC:/_program/libfreenect2-masterldepends/glfw/include -IC:/Program -IC:/Users/Leo_Note/Desktop/smartprojector/smartprojector/Files -I"C:/Users/Leo_Note/Desktop/smartprojector/smartprojector/(x86)/Intel/OpenCL" -IC:/Users/Leo_Note/Desktop/smartprojector/smartprojector/SDK/4.6/include -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtCore SmartProjectorMainWindow.h -o release\moc_SmartProjectorMainWindow.cpp
+if errorlevel 1 goto VCEnd
+endlocal</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
 if errorlevel 1 goto VCEnd
-D:\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\bin\moc.exe  -DUNICODE -DWIN32 -DWIN64 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -ID:/libs/qt/qt5.5.0_x64/5.5/msvc2013_64/mkspecs/win32-msvc2013 -I"D:/Documents/2015?2?? ??/smartprojector" -Id:/Libs/opencv2411/opencv/build/include/opencv -Id:/Libs/opencv2411/opencv/build/include -ID:/Libs/libfreenect2-master/include -ID:/Libs/libfreenect2-master/include/internal -ID:/Libs/libfreenect2-master/build -ID:/Libs/libfreenect2-master/src/tinythread -ID:/Libs/libfreenect2-master/depends/libusb/libusb -ID:/Libs/libfreenect2-master/depends/libjpeg-turbo64/include -ID:/Libs/libfreenect2-masterldepends/glfw/include -IC:/Program -I"D:/Documents/2015?2?? ??/smartprojector/Files" -I"D:/Documents/2015?2?? ??/smartprojector/(x86)/Intel/OpenCL" -I"D:/Documents/2015?2?? ??/smartprojector/SDK/4.6/include" -ID:/libs/qt/qt5.5.0_x64/5.5/msvc2013_64/include -ID:/libs/qt/qt5.5.0_x64/5.5/msvc2013_64/include/QtWidgets -ID:/libs/qt/qt5.5.0_x64/5.5/msvc2013_64/include/QtGui -ID:/libs/qt/qt5.5.0_x64/5.5/msvc2013_64/include/QtANGLE -ID:/libs/qt/qt5.5.0_x64/5.5/msvc2013_64/include/QtCore SmartProjectorMainWindow.h -o release\moc_SmartProjectorMainWindow.cpp
+C:\Qt\Qt5.5.1\5.5\msvc2013_64\bin\moc.exe  -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/Leo_Note/Desktop/smartprojector/smartprojector -IC:/_program/opencv/build/include/opencv -IC:/_program/opencv/build/include -IC:/_program/libfreenect2-master/include -IC:/_program/libfreenect2-master/include/internal -IC:/_program/libfreenect2-master/build -IC:/_program/libfreenect2-master/src/tinythread -IC:/_program/libfreenect2-master/depends/libusb/libusb -IC:/_program/libfreenect2-master/depends/libjpeg-turbo64/include -IC:/_program/libfreenect2-masterldepends/glfw/include -IC:/Program -IC:/Users/Leo_Note/Desktop/smartprojector/smartprojector/Files -I"C:/Users/Leo_Note/Desktop/smartprojector/smartprojector/(x86)/Intel/OpenCL" -IC:/Users/Leo_Note/Desktop/smartprojector/smartprojector/SDK/4.6/include -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtCore SmartProjectorMainWindow.h -o release\moc_SmartProjectorMainWindow.cpp
 if errorlevel 1 goto VCEnd
 endlocal</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MOC SmartProjectorMainWindow.h</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MOC SmartProjectorMainWindow.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_SmartProjectorMainWindow.cpp;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\moc_SmartProjectorMainWindow.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">SmartProjectorMainWindow.h;%(AdditionalInputs)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">SmartProjectorMainWindow.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+if errorlevel 1 goto VCEnd
+C:\Qt\Qt5.5.1\5.5\msvc2013_64\bin\moc.exe  -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/Leo_Note/Desktop/smartprojector/smartprojector -IC:/_program/opencv/build/include/opencv -IC:/_program/opencv/build/include -IC:/_program/libfreenect2-master/include -IC:/_program/libfreenect2-master/include/internal -IC:/_program/libfreenect2-master/build -IC:/_program/libfreenect2-master/src/tinythread -IC:/_program/libfreenect2-master/depends/libusb/libusb -IC:/_program/libfreenect2-master/depends/libjpeg-turbo64/include -IC:/_program/libfreenect2-masterldepends/glfw/include -IC:/Program -IC:/Users/Leo_Note/Desktop/smartprojector/smartprojector/Files -I"C:/Users/Leo_Note/Desktop/smartprojector/smartprojector/(x86)/Intel/OpenCL" -IC:/Users/Leo_Note/Desktop/smartprojector/smartprojector/SDK/4.6/include -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtCore SmartProjectorMainWindow.h -o debug\moc_SmartProjectorMainWindow.cpp
+if errorlevel 1 goto VCEnd
+endlocal</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
 if errorlevel 1 goto VCEnd
-D:\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\bin\moc.exe  -DUNICODE -DWIN32 -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -ID:/libs/qt/qt5.5.0_x64/5.5/msvc2013_64/mkspecs/win32-msvc2013 -I"D:/Documents/2015?2?? ??/smartprojector" -Id:/Libs/opencv2411/opencv/build/include/opencv -Id:/Libs/opencv2411/opencv/build/include -ID:/Libs/libfreenect2-master/include -ID:/Libs/libfreenect2-master/include/internal -ID:/Libs/libfreenect2-master/build -ID:/Libs/libfreenect2-master/src/tinythread -ID:/Libs/libfreenect2-master/depends/libusb/libusb -ID:/Libs/libfreenect2-master/depends/libjpeg-turbo64/include -ID:/Libs/libfreenect2-masterldepends/glfw/include -IC:/Program -I"D:/Documents/2015?2?? ??/smartprojector/Files" -I"D:/Documents/2015?2?? ??/smartprojector/(x86)/Intel/OpenCL" -I"D:/Documents/2015?2?? ??/smartprojector/SDK/4.6/include" -ID:/libs/qt/qt5.5.0_x64/5.5/msvc2013_64/include -ID:/libs/qt/qt5.5.0_x64/5.5/msvc2013_64/include/QtWidgets -ID:/libs/qt/qt5.5.0_x64/5.5/msvc2013_64/include/QtGui -ID:/libs/qt/qt5.5.0_x64/5.5/msvc2013_64/include/QtANGLE -ID:/libs/qt/qt5.5.0_x64/5.5/msvc2013_64/include/QtCore SmartProjectorMainWindow.h -o debug\moc_SmartProjectorMainWindow.cpp
+C:\Qt\Qt5.5.1\5.5\msvc2013_64\bin\moc.exe  -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/Leo_Note/Desktop/smartprojector/smartprojector -IC:/_program/opencv/build/include/opencv -IC:/_program/opencv/build/include -IC:/_program/libfreenect2-master/include -IC:/_program/libfreenect2-master/include/internal -IC:/_program/libfreenect2-master/build -IC:/_program/libfreenect2-master/src/tinythread -IC:/_program/libfreenect2-master/depends/libusb/libusb -IC:/_program/libfreenect2-master/depends/libjpeg-turbo64/include -IC:/_program/libfreenect2-masterldepends/glfw/include -IC:/Program -IC:/Users/Leo_Note/Desktop/smartprojector/smartprojector/Files -I"C:/Users/Leo_Note/Desktop/smartprojector/smartprojector/(x86)/Intel/OpenCL" -IC:/Users/Leo_Note/Desktop/smartprojector/smartprojector/SDK/4.6/include -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013_64/include/QtCore SmartProjectorMainWindow.h -o debug\moc_SmartProjectorMainWindow.cpp
 if errorlevel 1 goto VCEnd
 endlocal</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC SmartProjectorMainWindow.h</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MOC SmartProjectorMainWindow.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_SmartProjectorMainWindow.cpp;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\moc_SmartProjectorMainWindow.cpp;%(Outputs)</Outputs>
     </CustomBuild>
+    <ClInclude Include="optimalRectDDJ.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="debug\moc_QImageWidget.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="release\moc_QImageWidget.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="debug\moc_SmartProjectorMainWindow.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="release\moc_SmartProjectorMainWindow.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="debug\qrc_SmartProjectorMainWindow.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="release\qrc_SmartProjectorMainWindow.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClInclude Include="optimalRectDDJ.h" />
     <ClInclude Include="ui_SmartProjectorMainWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="SmartProjectorMainWindow.ui">
       <FileType>Document</FileType>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">SmartProjectorMainWindow.ui;qimagewidget.h;%(AdditionalInputs)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">SmartProjectorMainWindow.ui;qimagewidget.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+if errorlevel 1 goto VCEnd
+C:\Qt\Qt5.5.1\5.5\msvc2013_64\bin\uic.exe SmartProjectorMainWindow.ui -o ui_SmartProjectorMainWindow.h
+if errorlevel 1 goto VCEnd
+endlocal</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
 if errorlevel 1 goto VCEnd
-D:\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\bin\uic.exe SmartProjectorMainWindow.ui -o ui_SmartProjectorMainWindow.h
+C:\Qt\Qt5.5.1\5.5\msvc2013_64\bin\uic.exe SmartProjectorMainWindow.ui -o ui_SmartProjectorMainWindow.h
 if errorlevel 1 goto VCEnd
 endlocal</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">UIC SmartProjectorMainWindow.ui</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">UIC SmartProjectorMainWindow.ui</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">ui_SmartProjectorMainWindow.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ui_SmartProjectorMainWindow.h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">SmartProjectorMainWindow.ui;qimagewidget.h;%(AdditionalInputs)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">SmartProjectorMainWindow.ui;qimagewidget.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+if errorlevel 1 goto VCEnd
+C:\Qt\Qt5.5.1\5.5\msvc2013_64\bin\uic.exe SmartProjectorMainWindow.ui -o ui_SmartProjectorMainWindow.h
+if errorlevel 1 goto VCEnd
+endlocal</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
 if errorlevel 1 goto VCEnd
-D:\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\bin\uic.exe SmartProjectorMainWindow.ui -o ui_SmartProjectorMainWindow.h
+C:\Qt\Qt5.5.1\5.5\msvc2013_64\bin\uic.exe SmartProjectorMainWindow.ui -o ui_SmartProjectorMainWindow.h
 if errorlevel 1 goto VCEnd
 endlocal</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">UIC SmartProjectorMainWindow.ui</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">UIC SmartProjectorMainWindow.ui</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ui_SmartProjectorMainWindow.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ui_SmartProjectorMainWindow.h;%(Outputs)</Outputs>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="SmartProjectorMainWindow.qrc">
       <FileType>Document</FileType>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">SmartProjectorMainWindow.qrc;images\yellowcircle.png;images\redcircle.png;images\whitecircle.png;images\greencircle.png;images\noimage.png;images\tslogo.png;%(AdditionalInputs)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">SmartProjectorMainWindow.qrc;images\yellowcircle.png;images\redcircle.png;images\whitecircle.png;images\greencircle.png;images\noimage.png;images\tslogo.png;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+if errorlevel 1 goto VCEnd
+C:\Qt\Qt5.5.1\5.5\msvc2013_64\bin\rcc.exe -name SmartProjectorMainWindow SmartProjectorMainWindow.qrc -o release\qrc_SmartProjectorMainWindow.cpp
+if errorlevel 1 goto VCEnd
+endlocal</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
 if errorlevel 1 goto VCEnd
-D:\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\bin\rcc.exe -name SmartProjectorMainWindow SmartProjectorMainWindow.qrc -o release\qrc_SmartProjectorMainWindow.cpp
+C:\Qt\Qt5.5.1\5.5\msvc2013_64\bin\rcc.exe -name SmartProjectorMainWindow SmartProjectorMainWindow.qrc -o release\qrc_SmartProjectorMainWindow.cpp
 if errorlevel 1 goto VCEnd
 endlocal</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">RCC SmartProjectorMainWindow.qrc</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">RCC SmartProjectorMainWindow.qrc</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\qrc_SmartProjectorMainWindow.cpp;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\qrc_SmartProjectorMainWindow.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">SmartProjectorMainWindow.qrc;images\yellowcircle.png;images\redcircle.png;images\whitecircle.png;images\greencircle.png;images\noimage.png;images\tslogo.png;%(AdditionalInputs)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">SmartProjectorMainWindow.qrc;images\yellowcircle.png;images\redcircle.png;images\whitecircle.png;images\greencircle.png;images\noimage.png;images\tslogo.png;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+if errorlevel 1 goto VCEnd
+C:\Qt\Qt5.5.1\5.5\msvc2013_64\bin\rcc.exe -name SmartProjectorMainWindow SmartProjectorMainWindow.qrc -o debug\qrc_SmartProjectorMainWindow.cpp
+if errorlevel 1 goto VCEnd
+endlocal</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
 if errorlevel 1 goto VCEnd
-D:\libs\qt\qt5.5.0_x64\5.5\msvc2013_64\bin\rcc.exe -name SmartProjectorMainWindow SmartProjectorMainWindow.qrc -o debug\qrc_SmartProjectorMainWindow.cpp
+C:\Qt\Qt5.5.1\5.5\msvc2013_64\bin\rcc.exe -name SmartProjectorMainWindow SmartProjectorMainWindow.qrc -o debug\qrc_SmartProjectorMainWindow.cpp
 if errorlevel 1 goto VCEnd
 endlocal</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">RCC SmartProjectorMainWindow.qrc</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">RCC SmartProjectorMainWindow.qrc</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\qrc_SmartProjectorMainWindow.cpp;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\qrc_SmartProjectorMainWindow.cpp;%(Outputs)</Outputs>
     </CustomBuild>
     <None Include="images\greencircle.png" />

@@ -170,6 +170,8 @@ SmartProjectorMainWindow::~SmartProjectorMainWindow()
 	mKinectDevice->close();
 }
 
+
+
 void SmartProjectorMainWindow::openDeivce()
 {
 	libfreenect2::setGlobalLogger(libfreenect2::createConsoleLogger(libfreenect2::Logger::Debug));
@@ -200,6 +202,9 @@ void SmartProjectorMainWindow::openDeivce()
 
 }
 
+/////////////////////////////////////////////////
+//    타이머 인터럽트 걸려 주기적으로 호출
+////////////////////////////////////////////////
 void SmartProjectorMainWindow::timeout()
 {
 	//if (mIsKinectDeviceInit == false)
@@ -208,7 +213,7 @@ void SmartProjectorMainWindow::timeout()
 	if (listener->hasNewFrame() == false)
 		return;
 
-	if (mode == WARP_RESULT)
+	if (mode == WARP_RESULT)    //복원된 결과
 	{
 		libfreenect2::Frame undistorted(512, 424, 4), registered(512, 424, 4);
 		libfreenect2::FrameMap frames;
@@ -225,18 +230,18 @@ void SmartProjectorMainWindow::timeout()
 		std::copy(undistorted.data, undistorted.data + undistorted.width * undistorted.height * undistorted.bytes_per_pixel, imageDepth.data);
 		cv::flip(imageDepth, imageDepth, 1);			// 좌우 반전
 
-		warpScreenImage(mPatternImage, imageDepth);
+		warpScreenImage(mPatternImage, imageDepth);		//워핑진행
 
 		listener->release(frames);
 	}
 
-	if (mode == READY)
+	if (mode == READY)   //프로그램 화면에 영상 보여주는 부
 	{
 		libfreenect2::Frame undistorted(512, 424, 4), registered(512, 424, 4);
-		libfreenect2::FrameMap frames;
+		libfreenect2::FrameMap frames;   //프레임 받아오는부
 
 		listener->waitForNewFrame(frames);
-
+		
 		libfreenect2::Frame *rgb = frames[libfreenect2::Frame::Color];
 		libfreenect2::Frame *ir = frames[libfreenect2::Frame::Ir];			// 4byte float으로 데이터 들어옴
 		libfreenect2::Frame *depth = frames[libfreenect2::Frame::Depth];	// 4byte float으로 데이터 들어옴
@@ -253,7 +258,7 @@ void SmartProjectorMainWindow::timeout()
 		ImageUndistored = cv::Mat(registered.height, registered.width, CV_8UC4);
 
 		std::copy(rgb->data, rgb->data + rgb->width * rgb->height * rgb->bytes_per_pixel, image.data);										// RGB 이미지 복사
-		std::copy(depth->data, depth->data + depth->width * depth->height * depth->bytes_per_pixel, imageIR.data);											// IR 이미지 복사
+		std::copy(depth->data, depth->data + depth->width * depth->height * depth->bytes_per_pixel, imageIR.data);								// IR 이미지 복사
 		std::copy(undistorted.data, undistorted.data + undistorted.width * undistorted.height * undistorted.bytes_per_pixel, imageDepth.data); // undistored depth 복사
 		std::copy(registered.data, registered.data + registered.width * registered.height * registered.bytes_per_pixel, ImageUndistored.data); // Depth + RGB calibration 이미지 복사
 
@@ -312,7 +317,7 @@ void SmartProjectorMainWindow::timeout()
 		listener->release(frames);
 	}
 
-	if (mode == CALIBRATING)
+	if (mode == CALIBRATING)			//칼리브레이션 할때의 화면
 	{
 		
 		libfreenect2::Frame undistorted(512, 424, 4), registered(512, 424, 4);
@@ -849,8 +854,9 @@ void SmartProjectorMainWindow::correctionScreen()
 		return;
 	}
 }
-
-
+//////////////////////////////////////
+// 워핑을 수행하는 부
+/////////////////////////////////////
 void SmartProjectorMainWindow::warpScreenImage(cv::Mat &screenImage, cv::Mat &undistorted)
 {
 	// 1. Projection Area 검출
@@ -885,10 +891,12 @@ void SmartProjectorMainWindow::warpScreenImage(cv::Mat &screenImage, cv::Mat &un
 	float halfwidth = mProjectorImageWidth / 2.0f;
 	float halfhegiht = mProjectorImageHeight / 2.0f;
 
+	//프로젝션 영역 마스크
 	mProjectionAreaMask.setTo(0);
 	cv::Mat humanDepth;
 	cv::remap(undistorted, humanDepth, mHumanDepthMap_x, mHumanDepthMap_y, CV_INTER_LINEAR, cv::BORDER_CONSTANT, cv::Scalar(0, 0, 0));
 	// Calculate ProjectionArea
+
 	for (i = 0; i < humanDepth.rows; i++)
 	{
 		float* hDepthPtr = humanDepth.ptr<float>(i);
@@ -911,6 +919,7 @@ void SmartProjectorMainWindow::warpScreenImage(cv::Mat &screenImage, cv::Mat &un
 			yi = c2* (x + mCalibrationValues.at<float>(0, 7) * y + mCalibrationValues.at<float>(0, 8) * z + mCalibrationValues.at<float>(0, 9)) /
 				(mCalibrationValues.at<float>(0, 10) * x + mCalibrationValues.at<float>(0, 11) * y + mCalibrationValues.at<float>(0, 12) * z + mCalibrationValues.at<float>(0, 13));
 
+			//각 뎁스에 해당되는 이미지 좌표 
 			mImage_xPos.at<float>(i, j) = xi + halfwidth;
 			mImage_yPos.at<float>(i, j) = yi + halfhegiht;
 
@@ -1014,7 +1023,9 @@ void SmartProjectorMainWindow::warpScreenImage(cv::Mat &screenImage, cv::Mat &un
 	//mWarpingScreen->update();
 
 
-	// 3. warping 수행
+	///////////////////////////////////////////
+	//////수정부     
+	// 3. warping 수행 (전체 점에 대한 수행)			
 	bool Checkwapring = true;
 	if (Checkwapring)
 	{
@@ -1022,8 +1033,9 @@ void SmartProjectorMainWindow::warpScreenImage(cv::Mat &screenImage, cv::Mat &un
 		cv::Mat map_x;
 		cv::Mat map_y;
 
-		map_x = mImage_xPos(OptimalRect).clone();
-		map_y = mImage_yPos(OptimalRect).clone();
+		map_x = mImage_xPos(OptimalRect).clone();			//최종 이미지 x좌표
+		map_y = mImage_yPos(OptimalRect).clone();			//최종 이미지 y좌표
+
 
 		cv::resize(map_x, map_x, cv::Size(mProjectorImageWidth, mProjectorImageHeight));
 		cv::resize(map_y, map_y, cv::Size(mProjectorImageWidth, mProjectorImageHeight));
@@ -1043,7 +1055,9 @@ void SmartProjectorMainWindow::warpScreenImage(cv::Mat &screenImage, cv::Mat &un
 		if (screenImage.cols != mProjectorImageWidth || screenImage.rows != mProjectorImageHeight)
 			cv::resize(screenImage, screenImage, cv::Size(mProjectorImageWidth, mProjectorImageHeight));
 
+		//워핑된 이미지
 		mWarpImage.create(screenImage.size(), screenImage.type());
+		//mPatternImage 체크패턴 이미지
 		cv::remap(mPatternImage, mWarpImage, map_x, map_y, CV_INTER_LINEAR, cv::BORDER_CONSTANT, cv::Scalar(0, 0, 0));
 		cv::cvtColor(mWarpImage, mWarpImage, CV_BGRA2RGB);
 		cv::drawContours(mWarpImage, contours2, 0, cv::Scalar(255, 0, 0), 2);
@@ -1061,6 +1075,8 @@ void SmartProjectorMainWindow::warpScreenImage(cv::Mat &screenImage, cv::Mat &un
 	
 }
 
+
+//각도나 FOV에 따라서 화면 회전 구성 (2D상에서 보는 방향에따른 이미지 보정)
 void SmartProjectorMainWindow::create_Human_To_depth_Map()
 {
 	const float cx = 259.740692f;  // center of depth image
@@ -1079,8 +1095,8 @@ void SmartProjectorMainWindow::create_Human_To_depth_Map()
 	float fxRatio = fxk / fxh;
 	float fyRatio = fyk / fyh;
 
-	mHumanDepthMap_x = cv::Mat(424, 512, CV_32F);
-	mHumanDepthMap_y = cv::Mat(424, 512, CV_32F);
+	mHumanDepthMap_x = cv::Mat(424, 512, CV_32F);  //
+	mHumanDepthMap_y = cv::Mat(424, 512, CV_32F);  //
 
 	for (i = 0; i < 424; i++)
 	{
@@ -1095,3 +1111,4 @@ void SmartProjectorMainWindow::create_Human_To_depth_Map()
 	}
 
 }
+

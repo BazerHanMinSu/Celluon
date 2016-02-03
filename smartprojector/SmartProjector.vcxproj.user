@@ -5,7 +5,7 @@
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LocalDebuggerEnvironment>PATH=D:\Libs\opencv2411\opencv\build\x64\vc12\bin;D:\Libs\qt\qt5.5.0_x64\5.5\msvc2013_64\bin;D:\Libs\libfreenect2-master\depends\glfw\lib-vc2013;D:\Libs\libfreenect2-master\depends\libjpeg-turbo64\bin;D:\Libs\libfreenect2-master\depends\libusb\x64\Release\dll;D:\Libs\libfreenect2-master\build\lib\Release;%PATH%</LocalDebuggerEnvironment>
+    <LocalDebuggerEnvironment>PATH=C:\_program\opencv249\opencv\build\x64\vc12\bin;C:\qt\Qt5.5.1\5.5\msvc2013_64\bin;C:\_program\libfreenect2-master\depends\glfw\lib-vc2013;C:\_program\libfreenect2-master\depends\libjpeg-turbo64\bin;C:\_program\libfreenect2-master\depends\libusb\x64\Release\dll;C:\_program\libfreenect2-master\build\lib\Release;%PATH%</LocalDebuggerEnvironment>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>
