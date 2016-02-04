@@ -946,9 +946,10 @@ void SmartProjectorMainWindow::create_Human_To_depth_Map()
 }
 
 
-
+//홀필링 함수
+//영상 내부에 홀이 있을경우 인터폴레이션 하여 홀을 채운다.
 void SmartProjectorMainWindow::DepthImageHoleFilling(cv::Mat& imgDepth)
-{
+{	
 	float* imgDepth_data = (float *)imgDepth.data;  //depthImg 데이터 연결
 	int i, j;
 	float intervalX, intervalY;
@@ -963,41 +964,106 @@ void SmartProjectorMainWindow::DepthImageHoleFilling(cv::Mat& imgDepth)
 			{
 				//y축
 				depth_val = imgDepth_data[512 * (i - 1) + j];  //위치의 depthValue
-				if (depth_val < 0.001) continue;
-				magY = 0;
-				magX = 0;
-				for (int ii = i + 1; ii < imgDepth.rows; ii++)
+				if (depth_val < 0.001)	{} 
+				else
 				{
-					const float depth_obY = imgDepth_data[512 * ii + j];  //
-					if (isnan(depth_obY) || depth_obY <= 0.001) continue;
-					else
+					magY = 0;
+					magX = 0;
+					for (int ii = i + 1; ii < imgDepth.rows; ii++)
 					{
-						intervalY = 1.0 / (float)(ii - (i - 1));
-						magY = intervalY*depth_obY + (1 - intervalY)*depth_val;
-						break;
-					}
-				}//for
+						const float depth_obY = imgDepth_data[512 * ii + j];  //
+						if (isnan(depth_obY) || depth_obY <= 0.001) continue;
+						else
+						{
+							intervalY = 1.0 / (float)(ii - (i - 1));
+							magY = intervalY*depth_obY + (1 - intervalY)*depth_val;
+							break;
+						}
+					}//for
+				}
 				//x축
-				depth_val = imgDepth_data[512 * (i - 1) + j];  //위치의 depthValue
-				if (depth_val < 0.001) continue;
-				for (int jj = j + 1; jj < imgDepth.cols; jj++)
+				depth_val = imgDepth_data[512 * i + j-1];  //위치의 depthValue
+				if (depth_val < 0.001)	{}
+				else
 				{
-					const float depth_obX = imgDepth_data[512 * i + jj];  //위치의 depthValue
-					if (isnan(depth_obX) || depth_obX <= 0.001) continue;
-					else
+					for (int jj = j + 1; jj < imgDepth.cols; jj++)
 					{
-						intervalX = 1.0 / (float)(jj - (j - 1));
-						magX = intervalX*depth_obX + (1 - intervalX)*depth_val;
-						break;
-					}
-				}//for
-				if (magX == 0) magX = magY;
-				if (magY == 0) magY = magX;
-				if (magX && magY)
-					imgDepth_data[512 * i + j] = (magX + magY) / 2.;
+						const float depth_obX = imgDepth_data[512 * i + jj];  //위치의 depthValue
+						if (isnan(depth_obX) || depth_obX <= 0.001) continue;
+						else
+						{
+							intervalX = 1.0 / (float)(jj - (j - 1));
+							magX = intervalX*depth_obX + (1 - intervalX)*depth_val;
+							break;
+						}
+					}//for
+					if (magX == 0) magX = magY;
+					if (magY == 0) magY = magX;
+					if (magX && magY)
+						imgDepth_data[512 * i + j] = (magX + magY) / 2.;
+				}
 			}//if
 		}//for
 	}//for
+}
+
+//Arbitrary warping 진행
+void SmartProjectorMainWindow::WarpArbitrary(cv::Mat& inDepth, cv::Mat& outDepth, cv::Rect OptimalRect)
+{
+	cv::Mat map_x;
+	cv::Mat map_y;
+
+	map_x = mImage_xPos(OptimalRect).clone();			//최종 이미지 x좌표
+	map_y = mImage_yPos(OptimalRect).clone();			//죄종 이미지 y좌표
+
+	cv::resize(map_x, map_x, cv::Size(mProjectorImageWidth, mProjectorImageHeight));
+	cv::resize(map_y, map_y, cv::Size(mProjectorImageWidth, mProjectorImageHeight));
+
+	uchar* src = inDepth.data;
+	uchar* dst = outDepth.data;
+	int width = map_x.cols;
+	int height = map_x.rows;	
+	int ix, iy;
+
+	/*
+	for (int i = 0; i < map_x.rows; i++)
+	{
+		float *map_x_Ptr = map_x.ptr<float>(i);
+		float *map_y_Ptr = map_y.ptr<float>(i);
+		for (int j = 0; j < map_x.cols; j++)
+		{
+			map_x_Ptr[j] = 2 * j - map_x_Ptr[j];
+			map_y_Ptr[j] = 2 * i - map_y_Ptr[j];
+		}
+	}
+	*/
+
+	for (int y = 0; y < height; y++)
+	{
+		float *map_x_Ptr = map_x.ptr<float>(y);
+		float *map_y_Ptr = map_y.ptr<float>(y);
+		for (int x = 0; x < width; x++)
+		{
+			ix = map_x_Ptr[x];
+			iy = map_y_Ptr[x];
+			
+			if (ix < 0) ix = 0;
+			if (ix > 1600-1 ) ix = 1600-1;
+			if (iy < 0) iy = 0;
+			if (iy > 1200 - 1) iy = 1200 - 1;
+			
+			*(dst + iy*width * 3 + (ix * 3)    ) = *(src + y*width * 3 + (x * 3)    );
+			*(dst + iy*width * 3 + (ix * 3) + 1) = *(src + y*width * 3 + (x * 3) + 1);
+			*(dst + iy*width * 3 + (ix * 3) + 2) = *(src + y*width * 3 + (x * 3) + 2);
+			
+			
+		}
+	}
+
+	
+
+	
+
 
 
 }

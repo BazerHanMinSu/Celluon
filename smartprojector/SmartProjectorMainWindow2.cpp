@@ -48,8 +48,7 @@ void SmartProjectorMainWindow::timeout()
 	{
 		// 키넥트 영상 획득
 		getKinectImage(image, imageDepth, imageIR, imageRegisted);
-		// 홀필링
-		DepthImageHoleFilling(imageDepth);
+		
 
 		// Plane에서 정면이 되도록 본 Depth 
 		//cv::remap(imageDepth, userDepth, mHumanDepthMap_x, mHumanDepthMap_y, CV_INTER_LINEAR, cv::BORDER_CONSTANT, cv::Scalar(0, 0, 0)); // 
@@ -66,9 +65,10 @@ void SmartProjectorMainWindow::timeout()
 		// Warping 수행
 		if (mAccFrameNumber == mNumAvgFrame)
 		{
-			mAvgDepth = mAvgDepth / (float)mNumAvgFrame;
-			//warpScreenImage(mPatternImage, imageDepth); //워핑 수행
-			warpScreenImage(mPatternImage, mAvgDepth); //워핑 수행
+			//DepthImageHoleFilling(imageDepth);			// 홀필링
+			warpScreenImage(mPatternImage, imageDepth); //워핑 수행
+			//mAvgDepth = mAvgDepth / (float)mNumAvgFrame;
+			//warpScreenImage(mPatternImage, mAvgDepth); //워핑 수행
 			mAccFrameNumber = 0;
 		}
 	}
@@ -95,7 +95,7 @@ void SmartProjectorMainWindow::timeout()
 			//detectProjectionAreaUser(userDepth, userRegistered);
 		}
 		// 홀필링
-		DepthImageHoleFilling(imageDepth);
+		//DepthImageHoleFilling(imageDepth);
 
 
 		// 화면 출력용 이미지 생성
@@ -380,26 +380,6 @@ void SmartProjectorMainWindow::warpScreenImage(cv::Mat &screenImage, cv::Mat &un
 	bool Checkwapring = true;
 	if (Checkwapring)
 	{
-		cv::Mat map_x;
-		cv::Mat map_y;
-
-		map_x = mImage_xPos(OptimalRect).clone();			//최종 이미지 x좌표
-		map_y = mImage_yPos(OptimalRect).clone();			//죄종 이미지 y좌표
-
-		cv::resize(map_x, map_x, cv::Size(mProjectorImageWidth, mProjectorImageHeight));
-		cv::resize(map_y, map_y, cv::Size(mProjectorImageWidth, mProjectorImageHeight));
-
-		for (int i = 0; i < map_x.rows; i++)
-		{
-			float *map_x_Ptr = map_x.ptr<float>(i);
-			float *map_y_Ptr = map_y.ptr<float>(i);
-			for (int j = 0; j < map_x.cols; j++)
-			{
-				map_x_Ptr[j] = 2 * j - map_x_Ptr[j];
-				map_y_Ptr[j] = 2 * i - map_y_Ptr[j];
-			}
-		}
-
 		//cv::Mat warpImg;
 		cv::Mat resizedScreenImg;
 		if (screenImage.cols != mProjectorImageWidth || screenImage.rows != mProjectorImageHeight)
@@ -408,14 +388,16 @@ void SmartProjectorMainWindow::warpScreenImage(cv::Mat &screenImage, cv::Mat &un
 			resizedScreenImg = screenImage.clone();
 
 		mWarpImage = cv::Mat::zeros(resizedScreenImg.size(), resizedScreenImg.type());
-
-
+		
 		if (mCorrectionFlag)
 		{
 			// homography transform
 			if (mHomographyCB->checkState() == Qt::Unchecked)
 			{
-				cv::remap(resizedScreenImg, mWarpImage, map_x, map_y, cv::INTER_LINEAR, cv::BORDER_CONSTANT, cv::Scalar(0, 0, 0));
+				//추가함수
+				WarpArbitrary(resizedScreenImg, mWarpImage, OptimalRect);
+				//원본
+				//cv::remap(resizedScreenImg, mWarpImage, map_x, map_y, cv::INTER_LINEAR, cv::BORDER_CONSTANT, cv::Scalar(0, 0, 0));
 			}
 			else //4점으로 워핑 수행 (평면에서 가능하도록
 			{

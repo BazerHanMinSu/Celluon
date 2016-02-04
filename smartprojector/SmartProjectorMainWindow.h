@@ -80,6 +80,7 @@ public:
 public:
 	//Depth Image È¦ÇÊ¸µ
 	void DepthImageHoleFilling(cv::Mat& imgDepth);
+	void WarpArbitrary(cv::Mat& inDepth, cv::Mat& outDepth, cv::Rect OptimalRect);
 
 public slots:
 	void openDeivce();
