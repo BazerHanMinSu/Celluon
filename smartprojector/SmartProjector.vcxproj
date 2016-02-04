@@ -140,6 +140,7 @@
     <ClCompile Include="SmartProjectorMainWindow.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="optimalRectDDJ.cpp" />
+    <ClCompile Include="SmartProjectorMainWindow2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="QImageWidget.h">
