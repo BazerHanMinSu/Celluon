@@ -582,11 +582,11 @@ void SmartProjectorMainWindow::detectProjectionArea(cv::Mat& undistorted, cv::Ma
 
 	for (i = 0; i < undistorted.rows; i++)
 	{
-		float *XYZ_Ptr = mPointXYZ.ptr<float>(i);
+		float *XYZ_Ptr = mPointXYZ.ptr<float>(i);  //mPointXYZ에 값을 집어넣기 위한
 
 		for (j = 0; j < undistorted.cols; j++)
 		{
-			cv::Vec3b dimageVec = depthimg.at<cv::Vec3b>(i, j);
+			cv::Vec3b dimageVec = depthimg.at<cv::Vec3b>(i, j);		//복사한 depthImg
 			const float depth_val = undistorted_data[512 * i + j];
 
 			if (isnan(depth_val) || depth_val <= 0.001)
@@ -946,3 +946,58 @@ void SmartProjectorMainWindow::create_Human_To_depth_Map()
 }
 
 
+
+void SmartProjectorMainWindow::DepthImageHoleFilling(cv::Mat& imgDepth)
+{
+	float* imgDepth_data = (float *)imgDepth.data;  //depthImg 데이터 연결
+	int i, j;
+	float intervalX, intervalY;
+	float magX, magY;
+
+	for (i = 1; i < imgDepth.rows; i++)
+	{
+		for (j = 1; j < imgDepth.cols; j++)
+		{
+			float depth_val = imgDepth_data[512 * i + j];  //위치의 depthValue
+			if (isnan(depth_val) || depth_val <= 0.001)
+			{
+				//y축
+				depth_val = imgDepth_data[512 * (i - 1) + j];  //위치의 depthValue
+				if (depth_val < 0.001) continue;
+				magY = 0;
+				magX = 0;
+				for (int ii = i + 1; ii < imgDepth.rows; ii++)
+				{
+					const float depth_obY = imgDepth_data[512 * ii + j];  //
+					if (isnan(depth_obY) || depth_obY <= 0.001) continue;
+					else
+					{
+						intervalY = 1.0 / (float)(ii - (i - 1));
+						magY = intervalY*depth_obY + (1 - intervalY)*depth_val;
+						break;
+					}
+				}//for
+				//x축
+				depth_val = imgDepth_data[512 * (i - 1) + j];  //위치의 depthValue
+				if (depth_val < 0.001) continue;
+				for (int jj = j + 1; jj < imgDepth.cols; jj++)
+				{
+					const float depth_obX = imgDepth_data[512 * i + jj];  //위치의 depthValue
+					if (isnan(depth_obX) || depth_obX <= 0.001) continue;
+					else
+					{
+						intervalX = 1.0 / (float)(jj - (j - 1));
+						magX = intervalX*depth_obX + (1 - intervalX)*depth_val;
+						break;
+					}
+				}//for
+				if (magX == 0) magX = magY;
+				if (magY == 0) magY = magX;
+				if (magX && magY)
+					imgDepth_data[512 * i + j] = (magX + magY) / 2.;
+			}//if
+		}//for
+	}//for
+
+
+}

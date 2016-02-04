@@ -48,6 +48,8 @@ void SmartProjectorMainWindow::timeout()
 	{
 		// 키넥트 영상 획득
 		getKinectImage(image, imageDepth, imageIR, imageRegisted);
+		// 홀필링
+		DepthImageHoleFilling(imageDepth);
 
 		// Plane에서 정면이 되도록 본 Depth 
 		//cv::remap(imageDepth, userDepth, mHumanDepthMap_x, mHumanDepthMap_y, CV_INTER_LINEAR, cv::BORDER_CONSTANT, cv::Scalar(0, 0, 0)); // 
@@ -65,7 +67,8 @@ void SmartProjectorMainWindow::timeout()
 		if (mAccFrameNumber == mNumAvgFrame)
 		{
 			mAvgDepth = mAvgDepth / (float)mNumAvgFrame;
-			warpScreenImage(mPatternImage, imageDepth); //워핑 수행
+			//warpScreenImage(mPatternImage, imageDepth); //워핑 수행
+			warpScreenImage(mPatternImage, mAvgDepth); //워핑 수행
 			mAccFrameNumber = 0;
 		}
 	}
@@ -91,13 +94,16 @@ void SmartProjectorMainWindow::timeout()
 			// 유저 좌표상 프로젝션 영역
 			//detectProjectionAreaUser(userDepth, userRegistered);
 		}
+		// 홀필링
+		DepthImageHoleFilling(imageDepth);
+
 
 		// 화면 출력용 이미지 생성
 		//imageIR.convertTo(imageIR, CV_8U, 1.0 / 50.0);
 		imageDepth.convertTo(imageDepth, CV_8U, 1.0 / 50.0);
 		cv::cvtColor(imageDepth, imageDepth, CV_GRAY2RGB);
 
-
+		
 		mCurrentImage = image;
 		//mCurrentIRImage = imageIR;
 		mCurrentDepthImage = imageDepth;
@@ -206,8 +212,10 @@ void SmartProjectorMainWindow::timeout()
 
 ///////////////////////////////////////
 // 워핑을 수행하는 부
+// screenImage : 화면에 뿌려주는 이미지
+// undistorted : avgDetphImg
 ////////////////////////////////////////
-void SmartProjectorMainWindow::warpScreenImage(cv::Mat &screenImage, cv::Mat &undistorted)
+void SmartProjectorMainWindow::warpScreenImage(cv::Mat &screenImage, cv::Mat &undistorted) 
 {
 	// 1. Projection Area 검출
 	// 2. Area중 최대 Contour 검출
@@ -225,7 +233,7 @@ void SmartProjectorMainWindow::warpScreenImage(cv::Mat &screenImage, cv::Mat &un
 	depthCamera = mKinectDevice->getIrCameraParams();				//IR camera params
 	const float cx(depthCamera.cx), cy(depthCamera.cy);
 	const float fx(1 / depthCamera.fx), fy(1 / depthCamera.fy);
-	float* undistorted_data = (float *)undistorted.data;
+	float* undistorted_data = (float *)undistorted.data;  //depthImg 데이터 연결
 
 	int i, j;
 	float x, y, z;
@@ -247,7 +255,7 @@ void SmartProjectorMainWindow::warpScreenImage(cv::Mat &screenImage, cv::Mat &un
 		for (j = 0; j < undistorted.cols; j++)
 		{
 			//cv::Vec3b dimageVec = depthimg.at<cv::Vec3b>(i, j);
-			const float depth_val = undistorted_data[512 * i + j];
+			const float depth_val = undistorted_data[512 * i + j];  //위치의 depthValue
 
 			if (isnan(depth_val) || depth_val <= 0.001)
 				continue;

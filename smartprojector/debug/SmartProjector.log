@@ -1,38 +1,18 @@
-﻿Build started 2016-02-04 오후 9:50:22.
+﻿Build started 2016-02-05 오전 12:01:21.
      1>Project "D:\GitLocal\celluon\smartprojector\SmartProjector.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I. /IC:\_program\opencv\build\include\opencv /IC:\_program\opencv\build\include /I"C:\_program\libfreenect2-master\include" /I"C:\_program\libfreenect2-master\include\internal" /I"C:\_program\libfreenect2-master\build" /I"C:\_program\libfreenect2-master\src\tinythread" /I"C:\_program\libfreenect2-master\depends\libusb\libusb" /I"C:\_program\libfreenect2-master\depends\libjpeg-turbo64\include" /I"C:\_program\libfreenect2-master\depends\glfw\include" /IC:/Program /IFiles /I"(x86)/Intel/OpenCL" /ISDK/4.6/include /IC:\Qt\Qt5.5.1\5.5\msvc2013_64\include /IC:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtWidgets /IC:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtGui /IC:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtANGLE /IC:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore /Idebug /I. /I"C:\Qt\Qt5.5.1\5.5\msvc2013_64\mkspecs\win32-msvc2013" /Zi /nologo /W3 /WX- /Od /D _WINDOWS /D UNICODE /D WIN32 /D WIN64 /D QT_WIDGETS_LIB /D QT_GUI_LIB /D QT_CORE_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"debug\\" /Fd"debug\vc120.pdb" /Gd /TP /errorReport:prompt -w34100 -w34189 -w44996 SmartProjectorMainWindow.cpp SmartProjectorMainWindow2.cpp
-         SmartProjectorMainWindow.cpp
-     1>c:\_program\opencv\build\include\opencv2\flann\dist.h : warning C4819: The file contains a character that cannot be represented in the current code page (949). Save the file in Unicode format to prevent data loss
-     1>C:\_program\libfreenect2-master\include\libfreenect2/frame_listener.hpp(67): warning C4146: unary minus operator applied to unsigned type, result still unsigned
-     1>d:\gitlocal\celluon\smartprojector\SmartProjectorMainWindow.h(97): warning C4100: 'd' : unreferenced formal parameter
-     1>SmartProjectorMainWindow.cpp(160): warning C4305: '=' : truncation from 'double' to 'float'
-     1>SmartProjectorMainWindow.cpp(161): warning C4305: '=' : truncation from 'double' to 'float'
-     1>SmartProjectorMainWindow.cpp(187): warning C4100: 'value' : unreferenced formal parameter
-     1>SmartProjectorMainWindow.cpp(208): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
-     1>SmartProjectorMainWindow.cpp(209): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
-     1>SmartProjectorMainWindow.cpp(210): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
-     1>SmartProjectorMainWindow.cpp(211): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
-     1>SmartProjectorMainWindow.cpp(261): warning C4189: 'viewer_enabled' : local variable is initialized but not referenced
-     1>SmartProjectorMainWindow.cpp(295): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
-     1>SmartProjectorMainWindow.cpp(317): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
-     1>SmartProjectorMainWindow.cpp(766): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-     1>SmartProjectorMainWindow.cpp(652): warning C4100: 'userDepth' : unreferenced formal parameter
-     1>SmartProjectorMainWindow.cpp(808): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-     1>SmartProjectorMainWindow.cpp(959): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-     1>SmartProjectorMainWindow.cpp(1105): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
-     1>SmartProjectorMainWindow.cpp(1160): warning C4189: 'fyRatio' : local variable is initialized but not referenced
-     1>SmartProjectorMainWindow.cpp(1159): warning C4189: 'fxRatio' : local variable is initialized but not referenced
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I. /IC:\_program\opencv\build\include\opencv /IC:\_program\opencv\build\include /I"C:\_program\libfreenect2-master\include" /I"C:\_program\libfreenect2-master\include\internal" /I"C:\_program\libfreenect2-master\build" /I"C:\_program\libfreenect2-master\src\tinythread" /I"C:\_program\libfreenect2-master\depends\libusb\libusb" /I"C:\_program\libfreenect2-master\depends\libjpeg-turbo64\include" /I"C:\_program\libfreenect2-master\depends\glfw\include" /IC:/Program /IFiles /I"(x86)/Intel/OpenCL" /ISDK/4.6/include /IC:\Qt\Qt5.5.1\5.5\msvc2013_64\include /IC:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtWidgets /IC:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtGui /IC:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtANGLE /IC:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore /Idebug /I. /I"C:\Qt\Qt5.5.1\5.5\msvc2013_64\mkspecs\win32-msvc2013" /Zi /nologo /W3 /WX- /Od /D _WINDOWS /D UNICODE /D WIN32 /D WIN64 /D QT_WIDGETS_LIB /D QT_GUI_LIB /D QT_CORE_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"debug\\" /Fd"debug\vc120.pdb" /Gd /TP /errorReport:prompt -w34100 -w34189 -w44996 SmartProjectorMainWindow2.cpp
          SmartProjectorMainWindow2.cpp
      1>c:\_program\opencv\build\include\opencv2\flann\dist.h : warning C4819: The file contains a character that cannot be represented in the current code page (949). Save the file in Unicode format to prevent data loss
      1>C:\_program\libfreenect2-master\include\libfreenect2/frame_listener.hpp(67): warning C4146: unary minus operator applied to unsigned type, result still unsigned
-     1>d:\gitlocal\celluon\smartprojector\SmartProjectorMainWindow.h(97): warning C4100: 'd' : unreferenced formal parameter
-     1>SmartProjectorMainWindow2.cpp(109): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
-     1>SmartProjectorMainWindow2.cpp(111): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
-     1>SmartProjectorMainWindow2.cpp(113): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
-     1>SmartProjectorMainWindow2.cpp(115): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
-     1>SmartProjectorMainWindow2.cpp(172): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
-         Generating Code...
+     1>d:\gitlocal\celluon\smartprojector\SmartProjectorMainWindow.h(101): warning C4100: 'd' : unreferenced formal parameter
+     1>SmartProjectorMainWindow2.cpp(118): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+     1>SmartProjectorMainWindow2.cpp(120): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+     1>SmartProjectorMainWindow2.cpp(122): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+     1>SmartProjectorMainWindow2.cpp(124): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+     1>SmartProjectorMainWindow2.cpp(181): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+     1>SmartProjectorMainWindow2.cpp(316): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
+     1>SmartProjectorMainWindow2.cpp(462): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"output\\SmartProjectorD.exe" /NOLOGO /LIBPATH:C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib /LIBPATH:C:/Qt/Qt5.5.1/5.5/msvc2013_64/lib C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\qtmaind.lib shell32.lib C:/Qt/Qt5.5.1/5.5/msvc2013_64/lib\Qt5Cored.lib C:/_program/opencv/build/x64/vc12/lib/opencv_calib3d249d.lib C:/_program/opencv/build/x64/vc12/lib/opencv_contrib249d.lib C:/_program/opencv/build/x64/vc12/lib/opencv_core249d.lib C:/_program/opencv/build/x64/vc12/lib/opencv_features2d249d.lib C:/_program/opencv/build/x64/vc12/lib/opencv_flann249d.lib C:/_program/opencv/build/x64/vc12/lib/opencv_gpu249d.lib C:/_program/opencv/build/x64/vc12/lib/opencv_highgui249d.lib C:/_program/opencv/build/x64/vc12/lib/opencv_imgproc249d.lib C:/_program/opencv/build/x64/vc12/lib/opencv_legacy249d.lib C:/_program/opencv/build/x64/vc12/lib/opencv_ml249d.lib C:/_program/opencv/build/x64/vc12/lib/opencv_nonfree249d.lib C:/_program/opencv/build/x64/vc12/lib/opencv_objdetect249d.lib C:/_program/opencv/build/x64/vc12/lib/opencv_photo249d.lib C:/_program/opencv/build/x64/vc12/lib/opencv_stitching249d.lib C:/_program/opencv/build/x64/vc12/lib/opencv_superres249d.lib C:/_program/opencv/build/x64/vc12/lib/opencv_ts249d.lib C:/_program/opencv/build/x64/vc12/lib/opencv_video249d.lib C:/_program/opencv/build/x64/vc12/lib/opencv_videostab249d.lib "C:/_program/libfreenect2-master/build/lib/Debug/freenect2d.lib" "C:/_program/libfreenect2-master/depends/glfw/lib-vc2013/glfw3dll.lib" "C:/_program/libfreenect2-master/depends/libjpeg-turbo64/lib/turbojpeg.lib" "C:/_program/libfreenect2-master/depends/libusb/x64/Release/dll/libusb-1.0.lib" "C:/Program Files (x86)/Intel/OpenCL SDK/4.6/lib/x64/OpenCL.lib" C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Widgetsd.lib C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Guid.lib C:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Cored.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"output\SmartProjectorD.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /MACHINE:X64 "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" debug\QImageWidget.obj
          debug\SmartProjectorMainWindow.obj
@@ -47,4 +27,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:06.55
+Time Elapsed 00:00:03.04

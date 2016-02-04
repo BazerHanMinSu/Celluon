@@ -77,6 +77,10 @@ public:
 	// imageRegisted : 512x424 float CV_8UC3
 	void getKinectImage(cv::Mat &image, cv::Mat &imageDepth, cv::Mat& imageIR, cv::Mat& imageRegisted);
 
+public:
+	//Depth Image È¦ÇÊ¸µ
+	void DepthImageHoleFilling(cv::Mat& imgDepth);
+
 public slots:
 	void openDeivce();
 	void timeout();
