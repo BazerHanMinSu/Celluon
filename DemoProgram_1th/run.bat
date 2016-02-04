@@ -1,2 +1,0 @@
-PATH=C:\Qt\Qt5.5.1\5.5\msvc2013_64\bin;C:\_program\opencv\build\x64\vc12\bin;C:\_program\libfreenect2-master\depends\glfw\lib-vc2013;C:\_program\libfreenect2-master\depends\libjpeg-turbo64\bin;C:\_program\libfreenect2-master\depends\libusb\x64\Release\dll;C:\_program\libfreenect2-master\build\lib\Release;%PATH%
-SmartProjector.exe
