@@ -136,6 +136,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="MyWarping.cpp" />
     <ClCompile Include="QImageWidget.cpp" />
     <ClCompile Include="SmartProjectorMainWindow.cpp" />
     <ClCompile Include="main.cpp" />
@@ -179,6 +180,7 @@ endlocal</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MOC SmartProjectorMainWindow.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\moc_SmartProjectorMainWindow.cpp;%(Outputs)</Outputs>
     </CustomBuild>
+    <ClInclude Include="MyWarping.h" />
     <ClInclude Include="optimalRectDDJ.h" />
   </ItemGroup>
   <ItemGroup>

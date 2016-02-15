@@ -854,7 +854,7 @@ void SmartProjectorMainWindow::correctionScreen()
 	}
 }
 
-//사람관점에서의 depth map
+
 void SmartProjectorMainWindow::create_Human_To_depth_Map()
 {
 	//아비터리의 주 노멀벡터 방향의 각
@@ -902,7 +902,7 @@ void SmartProjectorMainWindow::create_Human_To_depth_Map()
 	float fxRatio = fxk / fxh;
 	float fyRatio = fyk / fyh;
 
-	//사람관점에서의 depth맵생성
+	
 	mHumanDepthMap_x = cv::Mat(424, 512, CV_32F);
 	mHumanDepthMap_y = cv::Mat(424, 512, CV_32F);
 	
@@ -1008,6 +1008,7 @@ void SmartProjectorMainWindow::DepthImageHoleFilling(cv::Mat& imgDepth)
 }
 
 //Arbitrary warping 진행
+//remap구현, 그러나 워핑방식의 문제로 중간에 균열 존재
 void SmartProjectorMainWindow::WarpArbitrary(cv::Mat& inDepth, cv::Mat& outDepth, cv::Rect OptimalRect)
 {
 	cv::Mat map_x;
@@ -1024,6 +1025,8 @@ void SmartProjectorMainWindow::WarpArbitrary(cv::Mat& inDepth, cv::Mat& outDepth
 	int width = map_x.cols;
 	int height = map_x.rows;	
 	int ix, iy;
+	
+
 
 	/*
 	for (int i = 0; i < map_x.rows; i++)
@@ -1059,11 +1062,5 @@ void SmartProjectorMainWindow::WarpArbitrary(cv::Mat& inDepth, cv::Mat& outDepth
 			
 		}
 	}
-
-	
-
-	
-
-
 
 }

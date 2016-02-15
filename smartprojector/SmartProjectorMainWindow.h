@@ -21,6 +21,7 @@
 #include <libfreenect2/logger.h>
 
 #include "optimalRectDDJ.h"
+//#include "MyWarping.h"
 
 #include <qscrollbar.h>
 
@@ -205,6 +206,12 @@ private:
 	
 	bool mPlaneRotationCorrection;
 	bool mCorrectionFlag;
+
+	////////////////////////////////////////////////////////////////////////
+	// 불규칙 워핑용 클래스
+	////////////////////////////////////////////////////////////////////////
+	//MyWarping mWarp;
+
 };
 
 #endif

@@ -260,8 +260,8 @@ void SmartProjectorMainWindow::warpScreenImage(cv::Mat &screenImage, cv::Mat &un
 			if (isnan(depth_val) || depth_val <= 0.001)
 				continue;
 
-			x = (j + 0.5 - cx) * fx * depth_val;
-			y = (i + 0.5 - cy) * fy * depth_val;
+			x = ((float)j + 0.5 - cx) * fx * depth_val;
+			y = ((float)i + 0.5 - cy) * fy * depth_val;
 			z = depth_val;
 
 			//xp = (q1*xk + q2*yk + q3*zk + q4)/(q9*xk + q10*yk + q11*zk + 1)
